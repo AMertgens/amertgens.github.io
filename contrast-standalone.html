@@ -1,0 +1,1810 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Manuscript Atlas — Enhanced highlighting</title><style>
+:root{color-scheme:dark;--bg:#10191b;--panel:#162225;--line:#2c3b3d;--muted:#9bafad;--ink:#ecede2;--accent:#d9bd7a}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px system-ui,sans-serif}button,input,select{font:inherit}button{cursor:pointer}header{height:86px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px}.brand{display:flex;gap:14px;align-items:center}.logo{font:30px Georgia;color:var(--accent)}h1{font:24px Georgia;margin:0 0 5px}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--accent)}.subtitle{color:var(--muted);font-size:12px}main{display:grid;grid-template-columns:245px 1fr 260px;min-height:calc(100vh - 86px)}aside{padding:26px 22px;background:var(--panel)}.left{border-right:1px solid var(--line)}.right{border-left:1px solid var(--line)}h2{font:21px Georgia;margin:10px 0 18px}h3{font-size:10px;text-transform:uppercase;letter-spacing:1.7px;color:var(--muted);margin:27px 0 14px}input[type=search],select{width:100%;background:#101a1c;border:1px solid #3c4c4b;color:var(--ink);padding:11px;border-radius:5px}label.check{display:flex;align-items:center;gap:9px;margin:13px 0;font-size:12px}input[type=checkbox]{accent-color:var(--accent)}.dot{width:8px;height:8px;border-radius:50%;display:inline-block}.count{margin-left:auto;color:var(--muted);font-size:11px}.btn{border:1px solid #455553;background:transparent;color:var(--ink);padding:9px 12px;border-radius:5px}.btn:hover{background:#33433e}.workspace{position:relative;min-width:0;display:flex;flex-direction:column}.toolbar{display:flex;justify-content:space-between;align-items:center;padding:23px 26px 0}.toolbar p{margin:5px 0;color:var(--muted);font-size:12px}.tools{display:flex;gap:5px}.tools button{width:33px;padding:7px}#map{width:100%;flex:1;min-height:550px;touch-action:none;background-image:radial-gradient(#54625a33 1px,transparent 1px);background-size:24px 24px}.node{cursor:pointer;outline:none}.node circle{fill:#162326;stroke-width:3}.node text{font:600 24px system-ui;fill:#eee;pointer-events:none}.node:hover circle,.node:focus circle{filter:drop-shadow(0 0 8px #d9bd7a88);fill:#35413a}.edge{fill:none;stroke-width:2.5}.fade{opacity:.12}.hidden{display:none}.footer{border-top:1px solid var(--line);padding:15px 25px;color:var(--muted);display:flex;gap:20px;font-size:11px}.pill{border:1px solid #526257;border-radius:30px;padding:5px 9px;font-size:10px;color:var(--accent)}.bigid{font:42px Georgia;margin:24px 0 10px}.detail{font-size:12px;color:var(--muted);line-height:1.7}.relation{width:100%;text-align:left;display:flex;justify-content:space-between;border:0;border-bottom:1px solid var(--line);padding:11px 0;background:transparent;color:var(--ink)}.note{font-size:11px;color:var(--muted);line-height:1.7;margin-top:30px}#tooltip{position:fixed;pointer-events:none;padding:10px 14px;background:#ecede2;color:#172324;border-radius:5px;z-index:5;display:none;font-size:12px;box-shadow:0 4px 20px #0005}a{color:var(--accent)}@media(max-width:1050px){main{grid-template-columns:210px 1fr}.right{grid-column:1/-1}.right #details{display:flex;gap:25px;align-items:start}.right h3{margin-top:10px}}@media(max-width:650px){header{padding:16px;height:auto}header .pill{display:none}main{display:block}aside.left{padding:15px}.filters{display:flex;flex-wrap:wrap;gap:4px 15px}.filters h3{width:100%;margin:12px 0 0}label.check{margin:5px 0}#map{height:65vh;min-height:430px}.toolbar{padding:18px 15px}.right #details{display:block}}
+
+main{grid-template-columns:210px minmax(380px,1fr) minmax(420px,1fr)}.tree-panel{min-width:0;border-left:1px solid var(--line);display:flex;flex-direction:column}.tree-panel h2{margin:6px 0;font-size:22px}.tree-panel .toolbar{padding-bottom:18px;gap:10px;min-height:115px}.tree-panel .toolbar p{max-width:350px}.tree-scroll{background:#fff;overflow:auto;height:610px;flex:1;min-height:450px;max-height:75vh}.tree-scroll svg{display:block;width:100%;height:auto;max-width:none}.tree-scroll .tree-leaf{transition:opacity .12s}.tree-scroll .leaf-match,.tree-scroll .leaf-match tspan{fill:#9c3200!important;font-weight:bold}.tree-scroll .leaf-muted{opacity:.16}.tree-scroll .leaf-band{fill:#f6b643;fill-opacity:.3;pointer-events:none}.tree-scroll .tip-match{stroke:#c25f00!important;stroke-width:2!important;opacity:1!important}.match-panel{padding:15px 22px;min-height:110px;background:var(--panel);border-top:1px solid var(--line)}.match-header{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;color:var(--accent)}.match-header button{padding:5px 8px;font-size:10px}#tree-matches{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;max-height:120px;overflow:auto}.siglum{background:#263738;border:1px solid #56645a;color:var(--ink);font:11px ui-monospace,monospace;padding:5px 7px;border-radius:3px;cursor:pointer}.right{grid-column:2 / -1;border-top:1px solid var(--line)}.right #details{display:grid;grid-template-columns:200px 1fr;gap:25px}.right #details>div:nth-child(2){display:flex;flex-wrap:wrap;gap:0 20px}.right #details h3{width:100%;margin-top:10px}.right .relation{width:140px}.right .note{margin-top:15px}.left{grid-row:1 / 3}.workspace #map{height:610px;max-height:75vh}.footer{line-height:1.6;flex-wrap:wrap}.tree-scroll .located{stroke:#b62600;stroke-width:.3px}
+@media(min-width:1550px){main{grid-template-columns:230px minmax(500px,1fr) minmax(550px,1fr)}}@media(max-width:800px){main{grid-template-columns:190px minmax(0,1fr)}.left{grid-row:1/4}.tree-panel{grid-column:2}.right{grid-column:2}.tree-scroll{flex:auto;max-height:650px}.workspace #map{min-height:500px;height:550px}.right #details{grid-template-columns:150px 1fr}}@media(max-width:650px){main{display:flex;flex-direction:column}.left{order:0}.workspace{order:1}.tree-panel{order:2}.right{order:3}.filters{display:grid;grid-template-columns:1fr 1fr}.filters>h3{grid-column:1/-1}.filters #versions{display:grid;grid-template-columns:1fr 1fr;gap:0 10px;grid-column:1/-1}.filters #types{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.left .note{display:none}.left h3{margin:15px 0 10px}.workspace #map{min-height:400px;height:480px}.tree-scroll{height:500px;flex:auto}.right #details{display:block}.tree-panel .toolbar{padding:20px 15px}.tree-panel .toolbar p{font-size:11px}}
+@media(min-width:801px) and (max-width:1200px){main{grid-template-columns:165px minmax(0,1fr) minmax(0,1fr)}aside.left{padding:20px 12px}.toolbar{padding:20px 12px 0}.tree-panel .toolbar{padding:20px 12px}.toolbar .tools{gap:2px}.tools button{width:27px}.eyebrow{letter-spacing:1px}.footer{padding:12px}.tree-panel .toolbar{flex-wrap:wrap}.tree-panel .toolbar h2{font-size:20px}} 
+/* Dark tree palette, coordinated with the tradition graph. */
+.tree-scroll{background:#0b1112;background-image:radial-gradient(#54625a26 1px,transparent 1px);background-size:24px 24px;scrollbar-color:#435451 #0b1112}
+#phylogeny text,#phylogeny tspan{fill:#d6dfd7}
+#phylogeny .st17{stroke:#b5c4bc}
+#phylogeny .st11{stroke:#5b706b;stroke-opacity:.55}
+#phylogeny .st12{stroke:#c6bd7b}#phylogeny .st13{stroke:#60b5aa}#phylogeny .st14{stroke:#e88879}#phylogeny .st15{stroke:#bc91b3}#phylogeny .st16{stroke:#8baee6}
+#phylogeny .st0,#phylogeny .st1{fill:#c6bd7b}#phylogeny .st2,#phylogeny .st6{fill:#e88879}#phylogeny .st7,#phylogeny .st5{fill:#8baee6}#phylogeny .st3,#phylogeny .st10{fill:#bc91b3}#phylogeny .st4,#phylogeny .st18{fill:#60b5aa}
+#phylogeny .st1,#phylogeny .st2,#phylogeny .st3,#phylogeny .st4,#phylogeny .st5{stroke:#354744}
+.tree-scroll .leaf-match,.tree-scroll .leaf-match tspan{fill:#ffe3a3!important;font-weight:bold}
+.tree-scroll .leaf-muted{opacity:.25}.tree-scroll .leaf-band{fill:#d9bd7a;fill-opacity:.13}
+.tree-scroll .tip-match{stroke:#f5d58b!important}.tree-scroll .located{stroke:#ffe3a3;stroke-width:.3px}
+
+/* Alternate view: stronger visual separation for matched manuscripts. */
+#phylogeny.tree-has-selection text:not(.tree-leaf),#phylogeny.tree-has-selection text:not(.tree-leaf) tspan{opacity:1!important}
+
+.tree-scroll .leaf-band{fill:#ffd66b;fill-opacity:.2}
+.tree-scroll .leaf-muted{opacity:.42}
+#phylogeny.tree-has-selection path,#phylogeny.tree-has-selection polygon,#phylogeny.tree-has-selection circle{opacity:.55}
+#phylogeny.tree-has-selection line{opacity:.45}
+#phylogeny.tree-has-selection line.tip-match{opacity:1!important;stroke:#ffe391!important;stroke-width:3!important;stroke-dasharray:none;filter:drop-shadow(0 0 2px #ffcf65)}
+#phylogeny .label-backing{fill:#ffe391;stroke:#fff0b6;stroke-width:.5}
+#phylogeny .leaf-match,#phylogeny .leaf-match tspan{fill:#151b19!important;font-weight:800;opacity:1!important}
+#phylogeny .match-beacon{fill:#fff2b7;stroke:#e4a83a;stroke-width:1;opacity:1!important;filter:drop-shadow(0 0 3px #ffd66b)}
+#phylogeny .match-rail{stroke:#ffe391;stroke-width:2;opacity:1!important}
+.siglum{background:#ffe391;color:#18211d;border-color:#ffe391;font-weight:700}.siglum:hover{background:#fff2bf}
+.tree-panel .eyebrow{color:#ffe391}.tree-panel #tree-status{color:#f3d993}
+.contrast-note{font-size:11px;color:#e0cfa3;margin:0;padding:10px 22px;border-top:1px solid #504b34;background:#25291f}
+
+/* Shape names in the source SVG are outlined paths, not text elements. */
+#phylogeny.tree-has-selection path.st0,#phylogeny.tree-has-selection path.st6,#phylogeny.tree-has-selection path.st7,#phylogeny.tree-has-selection path.st10,#phylogeny.tree-has-selection path.st18{opacity:1!important}
+</style><header><div class="brand"><span class="logo">✣</span><div><h1>Manuscript Atlas</h1><div class="subtitle">Medical manuscripts · Enhanced highlighting</div></div></div><span class="pill">VENICE · 02 NOV 2026</span></header><main><aside class="left"><div class="eyebrow">Explore the tradition</div><h2>Find a manuscript</h2><input id="search" type="search" placeholder="Search siglum, e.g. FR1" aria-label="Search manuscript"><div class="filters"><h3>Graph versions</h3><div id="versions"></div><h3>Text type</h3><div id="types"></div></div><h3>Relationship display</h3><select id="relationship" aria-label="Relationship display"><option value="all">All line styles</option><option value="solid">Direct relationships</option><option value="dotted">Indirect relationships</option></select><label class="check"><input id="neighbors" type="checkbox"> Focus on selected & neighbors</label><button class="btn" id="reset">Reset filters</button><p class="note">Filters combine. A manuscript with multiple text types appears when any of its types is enabled.</p></aside><section class="workspace"><div class="toolbar"><div><div class="eyebrow">Tradition overview</div><p id="status" aria-live="polite"></p></div><div class="tools"><button class="btn" id="minus" aria-label="Zoom out">−</button><button class="btn" id="plus" aria-label="Zoom in">+</button><button class="btn" id="fit" aria-label="Fit map">⌖</button></div></div><svg id="map" viewBox="480 130 1160 900" aria-label="Interactive manuscript relationship map"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><g id="graph"></g></svg><div class="footer"><span>↗ Solid: direct · Dotted: indirect / intermediate witness</span><span>Hover to preview · Click to inspect · Scroll to zoom · Drag to pan</span></div></section><section class="tree-panel"><div class="toolbar"><div><div class="eyebrow">Individual manuscripts</div><h2>Phylogenetic tree</h2><p id="tree-status" aria-live="polite">Hover over a group to highlight its manuscripts</p></div><div class="tools"><button class="btn" id="tree-minus" aria-label="Zoom tree out">−</button><button class="btn" id="tree-plus" aria-label="Zoom tree in">+</button><button class="btn" id="tree-fit" aria-label="Fit tree">⌖</button></div></div><div class="tree-scroll" id="tree-scroll"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1245.3 1265.7" id="phylogeny" aria-label="Phylogenetic tree of individual manuscripts" role="img">
+  
+  <defs>
+    <style>
+      .st0, .st1 {
+        fill: olive;
+      }
+
+      .st2, .st3, .st4, .st5, .st1 {
+        stroke: #d3d3d3;
+      }
+
+      .st2, .st6 {
+        fill: red;
+      }
+
+      .st7, .st5 {
+        fill: blue;
+      }
+
+      .st8, .st9 {
+        isolation: isolate;
+      }
+
+      .st3, .st10 {
+        fill: maroon;
+      }
+
+      .st11 {
+        stroke: #a9a9a9;
+        stroke-dasharray: 2 5;
+      }
+
+      .st11, .st12, .st13, .st14, .st15, .st16, .st17 {
+        fill: none;
+      }
+
+      .st9 {
+        font-family: ArialMT, Arial;
+        font-size: 6.7px;
+      }
+
+      .st12 {
+        stroke: olive;
+      }
+
+      .st12, .st13, .st14, .st15, .st16 {
+        stroke-width: 2px;
+      }
+
+      .st13 {
+        stroke: teal;
+      }
+
+      .st14 {
+        stroke: red;
+      }
+
+      .st15 {
+        stroke: maroon;
+      }
+
+      .st4, .st18 {
+        fill: teal;
+      }
+
+      .st16 {
+        stroke: blue;
+      }
+
+      .st17 {
+        stroke: #000;
+      }
+    
+</style>
+  </defs>
+  <g id="Ebene_1">
+    <line class="st11" x1="327" y1="53.7" x2="818" y2="53.7" />
+    <line class="st11" x1="327" y1="60.5" x2="818" y2="60.5" />
+    <line class="st11" x1="284.2" y1="67.2" x2="818" y2="67.2" />
+    <line class="st11" x1="508.3" y1="74" x2="818" y2="74" />
+    <line class="st11" x1="505.5" y1="80.7" x2="818" y2="80.7" />
+    <line class="st11" x1="399.9" y1="87.4" x2="818" y2="87.4" />
+    <line class="st11" x1="470.7" y1="94.2" x2="818" y2="94.2" />
+    <line class="st11" x1="332.9" y1="100.9" x2="818" y2="100.9" />
+    <line class="st11" x1="318.9" y1="107.7" x2="818" y2="107.7" />
+    <line class="st11" x1="246.9" y1="114.4" x2="818" y2="114.4" />
+    <line class="st11" x1="248" y1="121.2" x2="818" y2="121.2" />
+    <line class="st11" x1="283.9" y1="127.9" x2="818" y2="127.9" />
+    <line class="st11" x1="251.4" y1="134.6" x2="818" y2="134.6" />
+    <line class="st11" x1="195.6" y1="141.4" x2="818" y2="141.4" />
+    <line class="st11" x1="195.6" y1="148.1" x2="818" y2="148.1" />
+    <line class="st11" x1="181.7" y1="154.9" x2="818" y2="154.9" />
+    <line class="st11" x1="151.6" y1="161.6" x2="818" y2="161.6" />
+    <line class="st11" x1="221.8" y1="168.4" x2="818" y2="168.4" />
+    <line class="st11" x1="227.5" y1="175.1" x2="818" y2="175.1" />
+    <line class="st11" x1="176.9" y1="181.8" x2="818" y2="181.8" />
+    <line class="st11" x1="156.6" y1="188.6" x2="818" y2="188.6" />
+    <line class="st11" x1="188.2" y1="195.3" x2="818" y2="195.3" />
+    <line class="st11" x1="195.9" y1="202.1" x2="818" y2="202.1" />
+    <line class="st11" x1="296.5" y1="208.8" x2="818" y2="208.8" />
+    <line class="st11" x1="298.8" y1="215.6" x2="818" y2="215.6" />
+    <line class="st11" x1="271.8" y1="222.3" x2="818" y2="222.3" />
+    <line class="st11" x1="370.7" y1="229" x2="818" y2="229" />
+    <line class="st11" x1="334" y1="235.8" x2="818" y2="235.8" />
+    <line class="st11" x1="505.5" y1="242.5" x2="818" y2="242.5" />
+    <line class="st11" x1="451.4" y1="249.3" x2="818" y2="249.3" />
+    <line class="st11" x1="435.6" y1="256" x2="818" y2="256" />
+    <line class="st11" x1="584.6" y1="262.8" x2="818" y2="262.8" />
+    <line class="st11" x1="482.1" y1="269.5" x2="818" y2="269.5" />
+    <line class="st11" x1="519.4" y1="276.2" x2="818" y2="276.2" />
+    <line class="st11" x1="481.7" y1="283" x2="818" y2="283" />
+    <line class="st11" x1="563.7" y1="289.7" x2="818" y2="289.7" />
+    <line class="st11" x1="494.3" y1="296.5" x2="818" y2="296.5" />
+    <line class="st11" x1="561.5" y1="303.2" x2="818" y2="303.2" />
+    <line class="st11" x1="606.1" y1="310" x2="818" y2="310" />
+    <line class="st11" x1="598.2" y1="316.7" x2="818" y2="316.7" />
+    <line class="st11" x1="800.5" y1="323.4" x2="818" y2="323.4" />
+    <line class="st11" x1="790.1" y1="330.2" x2="818" y2="330.2" />
+    <line class="st11" x1="761.6" y1="336.9" x2="818" y2="336.9" />
+    <line class="st11" x1="731" y1="343.7" x2="818" y2="343.7" />
+    <line class="st11" x1="714.4" y1="350.4" x2="818" y2="350.4" />
+    <line class="st11" x1="520.4" y1="357.2" x2="818" y2="357.2" />
+    <line class="st11" x1="559.4" y1="363.9" x2="818" y2="363.9" />
+    <line class="st11" x1="572.9" y1="370.6" x2="818" y2="370.6" />
+    <line class="st11" x1="523.2" y1="377.4" x2="818" y2="377.4" />
+    <line class="st11" x1="595.8" y1="384.1" x2="818" y2="384.1" />
+    <line class="st11" x1="630.2" y1="390.9" x2="818" y2="390.9" />
+    <line class="st11" x1="644.8" y1="397.6" x2="818" y2="397.6" />
+    <line class="st11" x1="570.6" y1="404.4" x2="818" y2="404.4" />
+    <line class="st11" x1="559.4" y1="411.1" x2="818" y2="411.1" />
+    <line class="st11" x1="559.4" y1="417.8" x2="818" y2="417.8" />
+    <line class="st11" x1="665.7" y1="424.6" x2="818" y2="424.6" />
+    <line class="st11" x1="665.7" y1="431.3" x2="818" y2="431.3" />
+    <line class="st11" x1="665.7" y1="438.1" x2="818" y2="438.1" />
+    <line class="st11" x1="665.7" y1="444.8" x2="818" y2="444.8" />
+    <line class="st11" x1="662.8" y1="451.5" x2="818" y2="451.5" />
+    <line class="st11" x1="627.4" y1="458.3" x2="818" y2="458.3" />
+    <line class="st11" x1="592.2" y1="465" x2="818" y2="465" />
+    <line class="st11" x1="582.4" y1="471.8" x2="818" y2="471.8" />
+    <line class="st11" x1="586.5" y1="478.5" x2="818" y2="478.5" />
+    <line class="st11" x1="389.6" y1="485.3" x2="818" y2="485.3" />
+    <line class="st11" x1="484.9" y1="492" x2="818" y2="492" />
+    <line class="st11" x1="428.7" y1="498.7" x2="818" y2="498.7" />
+    <line class="st11" x1="400.7" y1="505.5" x2="818" y2="505.5" />
+    <line class="st11" x1="508" y1="512.2" x2="818" y2="512.2" />
+    <line class="st11" x1="724" y1="519" x2="818" y2="519" />
+    <line class="st11" x1="780.2" y1="525.7" x2="818" y2="525.7" />
+    <line class="st11" x1="578.5" y1="532.5" x2="818" y2="532.5" />
+    <line class="st11" x1="426.7" y1="539.2" x2="818" y2="539.2" />
+    <line class="st11" x1="426.7" y1="545.9" x2="818" y2="545.9" />
+    <line class="st11" x1="432.9" y1="552.7" x2="818" y2="552.7" />
+    <line class="st11" x1="430.1" y1="559.4" x2="818" y2="559.4" />
+    <line class="st11" x1="639.7" y1="566.2" x2="818" y2="566.2" />
+    <line class="st11" x1="564.4" y1="572.9" x2="818" y2="572.9" />
+    <line class="st11" x1="412.5" y1="579.7" x2="818" y2="579.7" />
+    <line class="st11" x1="414.4" y1="586.4" x2="818" y2="586.4" />
+    <line class="st11" x1="472.2" y1="593.1" x2="818" y2="593.1" />
+    <line class="st11" x1="407" y1="599.9" x2="818" y2="599.9" />
+    <line class="st11" x1="555.2" y1="606.6" x2="818" y2="606.6" />
+    <line class="st11" x1="478.9" y1="613.4" x2="818" y2="613.4" />
+    <line class="st11" x1="670.8" y1="620.1" x2="818" y2="620.1" />
+    <line class="st11" x1="653.4" y1="626.9" x2="818" y2="626.9" />
+    <line class="st11" x1="444.2" y1="633.6" x2="818" y2="633.6" />
+    <line class="st11" x1="404.7" y1="640.3" x2="818" y2="640.3" />
+    <line class="st11" x1="402.3" y1="647.1" x2="818" y2="647.1" />
+    <line class="st11" x1="400.7" y1="653.8" x2="818" y2="653.8" />
+    <line class="st11" x1="391.1" y1="660.6" x2="818" y2="660.6" />
+    <line class="st11" x1="799.8" y1="674.1" x2="818" y2="674.1" />
+    <line class="st11" x1="482.2" y1="680.8" x2="818" y2="680.8" />
+    <line class="st11" x1="478.4" y1="687.5" x2="818" y2="687.5" />
+    <line class="st11" x1="625.5" y1="694.3" x2="818" y2="694.3" />
+    <line class="st11" x1="507.6" y1="701" x2="818" y2="701" />
+    <line class="st11" x1="504.2" y1="707.8" x2="818" y2="707.8" />
+    <line class="st11" x1="504.2" y1="714.5" x2="818" y2="714.5" />
+    <line class="st11" x1="394.2" y1="721.3" x2="818" y2="721.3" />
+    <line class="st11" x1="641.3" y1="728" x2="818" y2="728" />
+    <line class="st11" x1="550.9" y1="734.7" x2="818" y2="734.7" />
+    <line class="st11" x1="593.5" y1="741.5" x2="818" y2="741.5" />
+    <line class="st11" x1="712.2" y1="748.2" x2="818" y2="748.2" />
+    <line class="st11" x1="587.4" y1="755" x2="818" y2="755" />
+    <line class="st11" x1="549.6" y1="761.7" x2="818" y2="761.7" />
+    <line class="st11" x1="443.9" y1="768.5" x2="818" y2="768.5" />
+    <line class="st11" x1="498.5" y1="775.2" x2="818" y2="775.2" />
+    <line class="st11" x1="476.4" y1="781.9" x2="818" y2="781.9" />
+    <line class="st11" x1="549" y1="788.7" x2="818" y2="788.7" />
+    <line class="st11" x1="582.7" y1="795.4" x2="818" y2="795.4" />
+    <line class="st11" x1="578.2" y1="802.2" x2="818" y2="802.2" />
+    <line class="st11" x1="387.5" y1="808.9" x2="818" y2="808.9" />
+    <line class="st11" x1="387.5" y1="815.7" x2="818" y2="815.7" />
+    <line class="st11" x1="385" y1="822.4" x2="818" y2="822.4" />
+    <line class="st11" x1="401.5" y1="829.1" x2="818" y2="829.1" />
+    <line class="st11" x1="387.3" y1="835.9" x2="818" y2="835.9" />
+    <line class="st11" x1="380.6" y1="842.6" x2="818" y2="842.6" />
+    <line class="st11" x1="457.2" y1="849.4" x2="818" y2="849.4" />
+    <line class="st11" x1="458.5" y1="856.1" x2="818" y2="856.1" />
+    <line class="st11" x1="460.3" y1="862.8" x2="818" y2="862.8" />
+    <line class="st11" x1="558.4" y1="869.6" x2="818" y2="869.6" />
+    <line class="st11" x1="453.2" y1="876.3" x2="818" y2="876.3" />
+    <line class="st11" x1="409.2" y1="883.1" x2="818" y2="883.1" />
+    <line class="st11" x1="439.9" y1="889.8" x2="818" y2="889.8" />
+    <line class="st11" x1="465.1" y1="896.6" x2="818" y2="896.6" />
+    <line class="st11" x1="554.4" y1="903.3" x2="818" y2="903.3" />
+    <line class="st11" x1="453.8" y1="910" x2="818" y2="910" />
+    <line class="st11" x1="395.5" y1="916.8" x2="818" y2="916.8" />
+    <line class="st11" x1="377" y1="923.5" x2="818" y2="923.5" />
+    <line class="st11" x1="377.2" y1="930.3" x2="818" y2="930.3" />
+    <line class="st11" x1="253.7" y1="937" x2="818" y2="937" />
+    <line class="st11" x1="250.2" y1="943.8" x2="818" y2="943.8" />
+    <line class="st11" x1="366.6" y1="950.5" x2="818" y2="950.5" />
+    <line class="st11" x1="344.3" y1="957.2" x2="818" y2="957.2" />
+    <line class="st11" x1="274" y1="964" x2="818" y2="964" />
+    <line class="st11" x1="260.7" y1="970.7" x2="818" y2="970.7" />
+    <line class="st11" x1="307.3" y1="977.5" x2="818" y2="977.5" />
+    <line class="st11" x1="296.4" y1="984.2" x2="818" y2="984.2" />
+    <line class="st11" x1="328.5" y1="991" x2="818" y2="991" />
+    <line class="st11" x1="113.3" y1="997.7" x2="818" y2="997.7" />
+    <line class="st11" x1="144.6" y1="1004.4" x2="818" y2="1004.4" />
+    <line class="st11" x1="144.6" y1="1011.2" x2="818" y2="1011.2" />
+    <line class="st11" x1="144.6" y1="1017.9" x2="818" y2="1017.9" />
+    <line class="st11" x1="149.1" y1="1024.7" x2="818" y2="1024.7" />
+    <line class="st11" x1="152" y1="1031.4" x2="818" y2="1031.4" />
+    <line class="st11" x1="147.7" y1="1038.2" x2="818" y2="1038.2" />
+    <line class="st11" x1="160.1" y1="1044.9" x2="818" y2="1044.9" />
+    <line class="st11" x1="156.1" y1="1051.6" x2="818" y2="1051.6" />
+    <line class="st11" x1="132.9" y1="1058.4" x2="818" y2="1058.4" />
+    <line class="st11" x1="86.3" y1="1065.1" x2="818" y2="1065.1" />
+    <line class="st11" x1="91.6" y1="1071.9" x2="818" y2="1071.9" />
+    <line class="st11" x1="86.7" y1="1078.6" x2="818" y2="1078.6" />
+    <line class="st11" x1="98.2" y1="1085.4" x2="818" y2="1085.4" />
+    <line class="st11" x1="95.5" y1="1092.1" x2="818" y2="1092.1" />
+    <line class="st11" x1="94.1" y1="1098.8" x2="818" y2="1098.8" />
+    <line class="st11" x1="129.5" y1="1105.6" x2="818" y2="1105.6" />
+    <line class="st11" x1="114.7" y1="1112.3" x2="818" y2="1112.3" />
+    <line class="st11" x1="120.1" y1="1119.1" x2="818" y2="1119.1" />
+    <line class="st11" x1="133.5" y1="1125.8" x2="818" y2="1125.8" />
+    <line class="st11" x1="124.4" y1="1132.6" x2="818" y2="1132.6" />
+    <line class="st11" x1="102" y1="1139.3" x2="818" y2="1139.3" />
+    <line class="st11" x1="121.7" y1="1146" x2="818" y2="1146" />
+    <line class="st11" x1="126.5" y1="1152.8" x2="818" y2="1152.8" />
+    <line class="st11" x1="163.9" y1="1159.5" x2="818" y2="1159.5" />
+    <line class="st11" x1="194.4" y1="1166.3" x2="818" y2="1166.3" />
+    <line class="st11" x1="71.3" y1="1173" x2="818" y2="1173" />
+    <line class="st11" x1="75.4" y1="1179.8" x2="818" y2="1179.8" />
+    <line class="st11" x1="61.7" y1="1186.5" x2="818" y2="1186.5" />
+    <line class="st11" x1="84.7" y1="1193.2" x2="818" y2="1193.2" />
+    <line class="st11" x1="90" y1="1200" x2="818" y2="1200" />
+    <line class="st11" x1="33.3" y1="1206.7" x2="818" y2="1206.7" />
+    <line class="st11" x1="31.9" y1="1213.5" x2="818" y2="1213.5" />
+    <line class="st11" x1="55.7" y1="1220.2" x2="818" y2="1220.2" />
+    <line class="st11" x1="30.2" y1="1227" x2="818" y2="1227" />
+    <line class="st11" x1="30.2" y1="1233.7" x2="818" y2="1233.7" />
+    <line class="st11" x1="30.2" y1="1240.4" x2="818" y2="1240.4" />
+    <path class="st13" d="M323.1,57.1v-3.4h0" />
+    <path class="st13" d="M323.1,57.1v3.4h0" />
+    <path class="st13" d="M224.3,62.2v-1.1c0-2.7,1.3-4,4-4h94.8" />
+    <path class="st13" d="M224.3,62.2v1.1c0,2.7,1.3,4,4,4h52.1" />
+    <path class="st13" d="M184.1,86.9v-20.8c0-2.7,1.3-4,4-4h36.1" />
+    <path class="st13" d="M490.1,77.3v-3.4h14.3" />
+    <path class="st13" d="M490.1,77.3v3.4h11.5" />
+    <path class="st13" d="M326.9,82.4v-1.1c0-2.7,1.3-4,4-4h159.2" />
+    <path class="st13" d="M326.9,82.4v1c0,2.7,1.3,4,4,4h65.1" />
+    <path class="st13" d="M306.5,88.3v-1.9c0-2.7,1.3-4,4-4h16.4" />
+    <path class="st13" d="M306.5,88.3v1.9c0,2.7,1.3,4,4,4h156.4" />
+    <path class="st13" d="M243.4,96.3v-4c0-2.7,1.3-4,4-4h59.1" />
+    <path class="st13" d="M296.2,104.3v-3.4h32.8" />
+    <path class="st13" d="M296.2,104.3v3.4h18.8" />
+    <path class="st13" d="M243.4,96.3v4c0,2.7,1.3,4,4,4h48.9" />
+    <path class="st13" d="M194.5,111.7v-11.4c0-2.7,1.3-4,4-4h44.8" />
+    <path class="st13" d="M207.4,119.5v-1.1c0-2.7,1.3-4,4-4h31.7" />
+    <path class="st13" d="M223.8,124.5v-3.4h20.3" />
+    <path class="st13" d="M223.8,124.5v3.4h56.3" />
+    <path class="st13" d="M207.4,119.5v1.1c0,2.7,1.3,4,4,4h12.4" />
+    <path class="st13" d="M195.5,127.1v-3.6c0-2.7,1.3-4,4-4h7.9" />
+    <path class="st13" d="M195.5,127.1v3.6c0,2.7,1.3,4,4,4h48" />
+    <path class="st13" d="M194.5,111.7v15.4h1" />
+    <path class="st13" d="M184.1,86.9v20.8c0,2.7,1.3,4,4,4h6.4" />
+    <path class="st13" d="M84.9,143v-52c0-2.7,1.3-4,4-4h95.2" />
+    <path class="st13" d="M191.7,144.8v-3.4h0" />
+    <path class="st13" d="M191.7,144.8v3.4h0" />
+    <path class="st13" d="M177.9,149.8v-1.1c0-2.7,1.3-4,4-4h9.8" />
+    <path class="st13" d="M177.9,149.8v5.1h0" />
+    <path class="st13" d="M147.8,155.7v-1.9c0-2.7,1.3-4,4-4h26.1" />
+    <path class="st13" d="M147.8,155.7v5.9h0" />
+    <path class="st13" d="M119.7,173.2v-13.5c0-2.7,1.3-4,4-4h24.1" />
+    <path class="st13" d="M181.2,171.7v-3.4h36.8" />
+    <path class="st13" d="M181.2,171.7v3.4h42.5" />
+    <path class="st13" d="M164.4,176.8v-1.1c0-2.7,1.3-4,4-4h12.8" />
+    <path class="st13" d="M164.4,176.8v1.1c0,2.7,1.3,4,4,4h4.7" />
+    <path class="st13" d="M151.8,182.7v-1.9c0-2.7,1.3-4,4-4h8.6" />
+    <path class="st13" d="M151.8,182.7v5.9h1" />
+    <path class="st13" d="M134.4,190.7v-4c0-2.7,1.3-4,4-4h13.4" />
+    <path class="st13" d="M175.4,198.7v-3.4h8.9" />
+    <path class="st13" d="M175.4,198.7v3.4h16.6" />
+    <path class="st13" d="M134.4,190.7v4c0,2.7,1.3,4,4,4h37" />
+    <path class="st13" d="M119.7,173.2v13.5c0,2.7,1.3,4,4,4h10.8" />
+    <path class="st13" d="M93.3,199v-21.8c0-2.7,1.3-4,4-4h22.4" />
+    <path class="st13" d="M292.6,212.2v-3.4h0" />
+    <path class="st13" d="M292.6,212.2v3.4h2.3" />
+    <path class="st13" d="M241.6,217.2v-1.1c0-2.7,1.3-4,4-4h47" />
+    <path class="st13" d="M241.6,217.2v1.1c0,2.7,1.3,4,4,4h22.4" />
+    <path class="st13" d="M213.7,224.8v-3.6c0-2.7,1.3-4,4-4h23.8" />
+    <path class="st13" d="M276.7,232.4v-3.4h90.2" />
+    <path class="st13" d="M276.7,232.4v3.4h53.4" />
+    <path class="st13" d="M213.7,224.8v3.6c0,2.7,1.3,4,4,4h58.9" />
+    <path class="st13" d="M93.3,199v21.8c0,2.7,1.3,4,4,4h116.5" />
+    <path class="st13" d="M84.9,143v52.1c0,2.7,1.3,4,4,4h4.4" />
+    <path class="st13" d="M74.7,446.9V147c0-2.7,1.3-4,4-4h6.2" />
+    <path class="st14" d="M447.5,245.9v-3.4h54.2" />
+    <path class="st14" d="M447.5,245.9v3.4h0" />
+    <path class="st14" d="M431.8,251v-1.1c0-2.7,1.3-4,4-4h11.7" />
+    <path class="st14" d="M431.8,251v5.1h0" />
+    <path class="st14" d="M413.7,261.1v-6.1c0-2.7,1.3-4,4-4h14.1" />
+    <path class="st14" d="M452.9,266.1v-3.4h127.8" />
+    <path class="st14" d="M452.9,266.1v3.4h25.4" />
+    <path class="st14" d="M416.9,271.2v-1.1c0-2.7,1.3-4,4-4h32" />
+    <path class="st14" d="M416.9,271.2v1.1c0,2.7,1.3,4,4,4h94.7" />
+    <path class="st14" d="M413.7,261.1v10.1h3.2" />
+    <path class="st14" d="M404.2,272v-7c0-2.7,1.3-4,4-4h5.5" />
+    <path class="st14" d="M404.2,272v7c0,2.7,1.3,4,4,4h69.7" />
+    <path class="st14" d="M394.7,282.6v-6.5c0-2.7,1.3-4,4-4h5.5" />
+    <path class="st14" d="M441.1,293.1v-3.4h118.8" />
+    <path class="st14" d="M441.1,293.1v3.4h49.3" />
+    <path class="st14" d="M394.7,282.6v6.5c0,2.7,1.3,4,4,4h42.4" />
+    <path class="st14" d="M363.9,348.7v-62.1c0-2.7,1.3-4,4-4h26.7" />
+    <path class="st14" d="M555.2,308.3v-5h2.5" />
+    <path class="st14" d="M594.4,313.3v-3.4h7.9" />
+    <path class="st14" d="M594.4,313.3v3.4h0" />
+    <path class="st14" d="M555.2,308.3v1.1c0,2.7,1.3,4,4,4h35.2" />
+    <path class="st14" d="M532.7,326.2v-13.9c0-2.7,1.3-4,4-4h18.5" />
+    <path class="st14" d="M786.2,326.8v-3.4h10.4" />
+    <path class="st14" d="M786.2,326.8v3.4h0" />
+    <path class="st14" d="M757.8,331.9v-1.1c0-2.7,1.3-4,4-4h24.5" />
+    <path class="st14" d="M757.8,331.9v5.1h0" />
+    <path class="st14" d="M701.5,337.8v-1.9c0-2.7,1.3-4,4-4h52.2" />
+    <path class="st14" d="M701.5,337.8v1.9c0,2.7,1.3,4,4,4h21.6" />
+    <path class="st14" d="M577.1,344.1v-2.3c0-2.7,1.3-4,4-4h120.4" />
+    <path class="st14" d="M577.1,344.1v2.3c0,2.7,1.3,4,4,4h129.4" />
+    <path class="st14" d="M532.7,326.2v13.9c0,2.7,1.3,4,4,4h40.4" />
+    <path class="st14" d="M503.6,341.7v-11.5c0-2.7,1.3-4,4-4h25.1" />
+    <path class="st14" d="M503.6,341.7v11.5c0,2.7,1.3,4,4,4h9" />
+    <path class="st14" d="M443.8,370.6v-24.9c0-2.7,1.3-4,4-4h55.8" />
+    <path class="st14" d="M536.5,367.3v-3.4h19.1" />
+    <path class="st14" d="M536.5,367.3v3.4h32.5" />
+    <path class="st14" d="M501.4,372.3v-1.1c0-2.7,1.3-4,4-4h31.1" />
+    <path class="st14" d="M501.4,372.3v1.1c0,2.7,1.3,4,4,4h13.9" />
+    <path class="st14" d="M492.5,384.5v-8.2c0-2.7,1.3-4,4-4h4.9" />
+    <path class="st14" d="M567,389.2v-1.1c0-2.7,1.3-4,4-4h21" />
+    <path class="st14" d="M594,394.2v-3.4h32.3" />
+    <path class="st14" d="M594,394.2v3.4h46.9" />
+    <path class="st14" d="M567,389.2v1c0,2.7,1.3,4,4,4h23" />
+    <path class="st14" d="M515.3,396.8v-3.6c0-2.7,1.3-4,4-4h47.8" />
+    <path class="st14" d="M515.3,396.8v3.6c0,2.7,1.3,4,4,4h47.5" />
+    <path class="st14" d="M492.5,384.5v8.2c0,2.7,1.3,4,4,4h18.8" />
+    <path class="st14" d="M470.3,399.5v-11c0-2.7,1.3-4,4-4h18.2" />
+    <path class="st14" d="M555.6,414.5v-3.4h0" />
+    <path class="st14" d="M555.6,414.5v3.4h0" />
+    <path class="st14" d="M470.3,399.5v11c0,2.7,1.3,4,4,4h81.2" />
+    <path class="st14" d="M443.8,370.6v24.9c0,2.7,1.3,4,4,4h22.5" />
+    <path class="st14" d="M398.6,414.8v-40.2c0-2.7,1.3-4,4-4h41.2" />
+    <path class="st14" d="M661.8,428v-3.4h0" />
+    <path class="st14" d="M661.8,428v3.4h0" />
+    <path class="st14" d="M661.8,433v-5h0" />
+    <path class="st14" d="M661.8,433v5.1h0" />
+    <path class="st14" d="M661.8,438.9v-5.9h0" />
+    <path class="st14" d="M661.8,438.9v5.9h0" />
+    <path class="st14" d="M595.8,445.2v-2.3c0-2.7,1.3-4,4-4h62" />
+    <path class="st14" d="M595.8,445.2v2.3c0,2.7,1.3,4,4,4h59.1" />
+    <path class="st14" d="M499,458.9v-9.7c0-2.7,1.3-4,4-4h92.8" />
+    <path class="st14" d="M588.3,461.7v-3.4h35.2" />
+    <path class="st14" d="M588.3,461.7v3.4h0" />
+    <path class="st14" d="M564,466.7v-1.1c0-2.7,1.3-4,4-4h20.3" />
+    <path class="st14" d="M564,466.7v1.1c0,2.7,1.3,4,4,4h10.5" />
+    <path class="st14" d="M532.9,472.6v-1.9c0-2.7,1.3-4,4-4h27.1" />
+    <path class="st14" d="M532.9,472.6v1.9c0,2.7,1.3,4,4,4h45.7" />
+    <path class="st14" d="M499,458.9v9.7c0,2.7,1.3,4,4,4h29.9" />
+    <path class="st14" d="M398.6,414.8v40.2c0,2.7,1.3,4,4,4h96.4" />
+    <path class="st14" d="M363.9,348.7v62.1c0,2.7,1.3,4,4,4h30.6" />
+    <path class="st14" d="M325.6,420.8v-68.1c0-2.7,1.3-4,4-4h34.4" />
+    <path class="st14" d="M334.8,492.8v-3.6c0-2.7,1.3-4,4-4h47" />
+    <path class="st14" d="M401.3,495.4v-3.4h79.7" />
+    <path class="st14" d="M401.3,495.4v3.4h23.6" />
+    <path class="st14" d="M373.2,500.4v-1.1c0-2.7,1.3-4,4-4h24.1" />
+    <path class="st14" d="M373.2,500.4v1.1c0,2.7,1.3,4,4,4h19.6" />
+    <path class="st14" d="M334.8,492.8v3.6c0,2.7,1.3,4,4,4h34.5" />
+    <path class="st14" d="M325.6,420.8v68.1c0,2.7,1.3,4,4,4h5.2" />
+    <path class="st14" d="M318.6,509.7v-85c0-2.7,1.3-4,4-4h3" />
+    <path class="st14" d="M471.7,519.8v-3.6c0-2.7,1.3-4,4-4h28.4" />
+    <path class="st14" d="M720.2,522.3v-3.4h0" />
+    <path class="st14" d="M720.2,522.3v3.4h56.1" />
+    <path class="st14" d="M543,527.4v-1.1c0-2.7,1.3-4,4-4h173.2" />
+    <path class="st14" d="M543,527.4v1.1c0,2.7,1.3,4,4,4h27.7" />
+    <path class="st14" d="M471.7,519.8v3.6c0,2.7,1.3,4,4,4h67.3" />
+    <path class="st14" d="M391.7,534.6v-10.8c0-2.7,1.3-4,4-4h75.9" />
+    <path class="st14" d="M422.9,542.6v-3.4h0" />
+    <path class="st14" d="M422.9,542.6v3.4h0" />
+    <path class="st14" d="M411.7,549.3v-2.7c0-2.7,1.3-4,4-4h7.1" />
+    <path class="st14" d="M426.3,556.1v-3.4h2.8" />
+    <path class="st14" d="M426.3,556.1v3.4h0" />
+    <path class="st14" d="M411.7,549.3v2.8c0,2.7,1.3,4,4,4h10.5" />
+    <path class="st14" d="M391.7,534.6v10.8c0,2.7,1.3,4,4,4h16" />
+    <path class="st14" d="M372.3,552.1v-13.5c0-2.7,1.3-4,4-4h15.4" />
+    <path class="st14" d="M470.6,569.5v-3.4h165.3" />
+    <path class="st14" d="M470.6,569.5v3.4h90" />
+    <path class="st14" d="M372.3,552.1v13.5c0,2.7,1.3,4,4,4h94.2" />
+    <path class="st14" d="M367.1,572.2v-16.1c0-2.7,1.3-4,4-4h1.2" />
+    <path class="st14" d="M384.7,584.7v-1.1c0-2.7,1.3-4,4-4h19.9" />
+    <path class="st14" d="M386.6,589.8v-3.4h24" />
+    <path class="st14" d="M386.6,589.8v3.4h81.7" />
+    <path class="st14" d="M384.7,584.7v5.1h1.9" />
+    <path class="st14" d="M381,592.3v-7.6h3.7" />
+    <path class="st14" d="M381,592.3v3.6c0,2.7,1.3,4,4,4h18.1" />
+    <path class="st14" d="M367.1,572.2v16.1c0,2.7,1.3,4,4,4h9.9" />
+    <path class="st14" d="M364.2,598.7v-26.5h2.9" />
+    <path class="st14" d="M458.5,610v-3.4h92.9" />
+    <path class="st14" d="M458.5,610v3.4h16.5" />
+    <path class="st14" d="M446.4,616.7v-2.7c0-2.7,1.3-4,4-4h8.1" />
+    <path class="st14" d="M645.5,623.5v-3.4h21.5" />
+    <path class="st14" d="M645.5,623.5v3.4h4.1" />
+    <path class="st14" d="M446.4,616.7v2.7c0,2.7,1.3,4,4,4h195.1" />
+    <path class="st14" d="M379.3,625.2v-4.4c0-2.7,1.3-4,4-4h63.1" />
+    <path class="st14" d="M379.3,625.2v4.4c0,2.7,1.3,4,4,4h57.1" />
+    <path class="st14" d="M364.2,598.7v22.5c0,2.7,1.3,4,4,4h11.1" />
+    <path class="st14" d="M318.6,509.7v85c0,2.7,1.3,4,4,4h41.6" />
+    <path class="st14" d="M205.2,608.8v-95.1c0-2.7,1.3-4,4-4h109.4" />
+    <path class="st16" d="M398.5,643.7v-3.4h2.4" />
+    <path class="st16" d="M398.5,643.7v3.4h0" />
+    <path class="st16" d="M354.8,650.5v-2.7c0-2.7,1.3-4,4-4h39.6" />
+    <path class="st16" d="M379.2,657.2v-3.4h17.7" />
+    <path class="st16" d="M379.2,657.2v3.4h8.1" />
+    <path class="st16" d="M354.8,650.5v2.7c0,2.7,1.3,4,4,4h20.3" />
+    <path class="st16" d="M296.2,660.6v-6.1c0-2.7,1.3-4,4-4h54.6" />
+    <path class="st16" d="M775.6,670.7v-3.4h38.6" />
+    <path class="st16" d="M775.6,670.7v3.4h20.4" />
+    <path class="st16" d="M296.2,660.6v6.1c0,2.7,1.3,4,4,4h475.4" />
+    <path class="st16" d="M208.4,707.9v-43.3c0-2.7,1.3-4,4-4h83.8" />
+    <path class="st12" d="M450.9,684.2v-3.4h27.5" />
+    <path class="st12" d="M450.9,684.2v3.4h23.6" />
+    <path class="st12" d="M417.1,692.2v-4c0-2.7,1.3-4,4-4h29.8" />
+    <path class="st12" d="M465,700.2v-1.9c0-2.7,1.3-4,4-4h152.7" />
+    <path class="st12" d="M489,706.1v-1.1c0-2.7,1.3-4,4-4h10.7" />
+    <path class="st12" d="M500.4,711.1v-3.4h0" />
+    <path class="st12" d="M500.4,711.1v3.4h0" />
+    <path class="st12" d="M489,706.1v1.1c0,2.7,1.3,4,4,4h7.4" />
+    <path class="st12" d="M465,700.2v1.9c0,2.7,1.3,4,4,4h20" />
+    <path class="st12" d="M417.1,692.2v4c0,2.7,1.3,4,4,4h43.9" />
+    <path class="st12" d="M321.4,706.7v-10.5c0-2.7,1.3-4,4-4h91.7" />
+    <path class="st12" d="M321.4,706.7v10.5c0,2.7,1.3,4,4,4h64.9" />
+    <path class="st12" d="M310.8,755.2v-44.5c0-2.7,1.3-4,4-4h6.6" />
+    <path class="st12" d="M465.1,735.2v-3.2c0-2.7,1.3-4,4-4h168.3" />
+    <path class="st12" d="M524.8,742.3v-3.6c0-2.7,1.3-4,4-4h18.3" />
+    <path class="st12" d="M589.6,744.9v-3.4h0" />
+    <path class="st12" d="M589.6,744.9v3.4h118.8" />
+    <path class="st12" d="M554.2,749.9v-1.1c0-2.7,1.3-4,4-4h31.4" />
+    <path class="st12" d="M554.2,749.9v1c0,2.7,1.3,4,4,4h25.3" />
+    <path class="st12" d="M524.8,742.3v3.6c0,2.7,1.3,4,4,4h25.5" />
+    <path class="st12" d="M465.1,735.2v3.2c0,2.7,1.3,4,4,4h55.6" />
+    <path class="st12" d="M375.5,753.5v-14.3c0-2.7,1.3-4,4-4h85.6" />
+    <path class="st12" d="M426.9,765.1v-3.4h118.9" />
+    <path class="st12" d="M426.9,765.1v3.4h13.2" />
+    <path class="st12" d="M396.4,771.8v-2.7c0-2.7,1.3-4,4-4h26.5" />
+    <path class="st12" d="M417.5,778.6v-3.4h77.1" />
+    <path class="st12" d="M417.5,778.6v3.4h55" />
+    <path class="st12" d="M396.4,771.8v2.7c0,2.7,1.3,4,4,4h17.2" />
+    <path class="st12" d="M375.5,753.5v14.3c0,2.7,1.3,4,4,4h16.9" />
+    <path class="st12" d="M334.3,773.6v-16.1c0-2.7,1.3-4,4-4h37.2" />
+    <path class="st12" d="M455.8,793.7v-1c0-2.7,1.3-4,4-4h85.4" />
+    <path class="st12" d="M550.8,798.8v-3.4h28" />
+    <path class="st12" d="M550.8,798.8v3.4h23.6" />
+    <path class="st12" d="M455.8,793.7v1.1c0,2.7,1.3,4,4,4h90.9" />
+    <path class="st12" d="M334.3,773.6v16.1c0,2.7,1.3,4,4,4h117.5" />
+    <path class="st12" d="M324.5,803.7v-26.1c0-2.7,1.3-4,4-4h5.8" />
+    <path class="st12" d="M383.6,812.3v-3.4h0" />
+    <path class="st12" d="M383.6,812.3v3.4h0" />
+    <path class="st12" d="M381.1,817.3v-5.1h2.5" />
+    <path class="st12" d="M381.1,817.3v5.1h0" />
+    <path class="st12" d="M366.6,824.9v-3.6c0-2.7,1.3-4,4-4h10.5" />
+    <path class="st12" d="M377.8,832.5v-3.4h19.9" />
+    <path class="st12" d="M377.8,832.5v3.4h5.6" />
+    <path class="st12" d="M366.6,824.9v3.6c0,2.7,1.3,4,4,4h7.2" />
+    <path class="st12" d="M364.9,833.8v-8.8h1.6" />
+    <path class="st12" d="M364.9,833.8v4.9c0,2.7,1.3,4,4,4h7.8" />
+    <path class="st12" d="M324.5,803.7v26.1c0,2.7,1.3,4,4,4h36.4" />
+    <path class="st12" d="M310.8,755.2v44.5c0,2.7,1.3,4,4,4h9.7" />
+    <path class="st12" d="M208.4,707.9v43.3c0,2.7,1.3,4,4,4h98.4" />
+    <path class="st17" d="M205.2,608.8v99.1h3.2" />
+    <path class="st17" d="M195,750.9v-138.1c0-2.7,1.3-4,4-4h6.2" />
+    <path class="st15" d="M441.2,852.7v-3.4h12.2" />
+    <path class="st15" d="M441.2,852.7v3.4h13.4" />
+    <path class="st15" d="M433,859.5v-2.7c0-2.7,1.3-4,4-4h4.2" />
+    <path class="st15" d="M456.4,866.2v-3.4h0" />
+    <path class="st15" d="M456.4,866.2v3.4h98.1" />
+    <path class="st15" d="M433,859.5v2.8c0,2.7,1.3,4,4,4h19.4" />
+    <path class="st15" d="M413.4,867.9v-4.4c0-2.7,1.3-4,4-4h15.6" />
+    <path class="st15" d="M413.4,867.9v4.4c0,2.7,1.3,4,4,4h31.9" />
+    <path class="st15" d="M322.8,893v-21.1c0-2.7,1.3-4,4-4h86.6" />
+    <path class="st15" d="M405.4,886.4v-3.4h0" />
+    <path class="st15" d="M405.4,886.4v3.4h30.6" />
+    <path class="st15" d="M374.1,893.2v-2.8c0-2.7,1.3-4,4-4h27.3" />
+    <path class="st15" d="M439.9,899.9v-3.4h21.4" />
+    <path class="st15" d="M439.9,899.9v3.4h110.7" />
+    <path class="st15" d="M374.1,893.2v2.7c0,2.7,1.3,4,4,4h61.8" />
+    <path class="st15" d="M355.4,901.6v-4.4c0-2.7,1.3-4,4-4h14.7" />
+    <path class="st15" d="M355.4,901.6v4.4c0,2.7,1.3,4,4,4h90.5" />
+    <path class="st15" d="M336.6,909.2v-3.6c0-2.7,1.3-4,4-4h14.9" />
+    <path class="st15" d="M336.6,909.2v3.6c0,2.7,1.3,4,4,4h51.1" />
+    <path class="st15" d="M325.2,918.1v-4.9c0-2.7,1.3-4,4-4h7.4" />
+    <path class="st15" d="M359.9,926.9v-3.4h13.3" />
+    <path class="st15" d="M359.9,926.9v3.4h13.4" />
+    <path class="st15" d="M325.2,918.1v4.8c0,2.7,1.3,4,4,4h30.7" />
+    <path class="st15" d="M322.8,893v25.1h2.3" />
+    <path class="st15" d="M195,750.9v138.1c0,2.7,1.3,4,4,4h123.9" />
+    <path class="st17" d="M74.7,446.9v300c0,2.7,1.3,4,4,4h116.2" />
+    <path class="st17" d="M62.6,714.1v-263.2c0-2.7,1.3-4,4-4h8.2" />
+    <path class="st13" d="M209.8,940.4v-3.4h40.1" />
+    <path class="st13" d="M209.8,940.4v3.4h36.5" />
+    <path class="st13" d="M195.9,947.1v-2.8c0-2.7,1.3-4,4-4h9.9" />
+    <path class="st13" d="M312,953.9v-3.4h50.8" />
+    <path class="st13" d="M312,953.9v3.4h28.5" />
+    <path class="st13" d="M195.9,947.1v2.7c0,2.7,1.3,4,4,4h112.1" />
+    <path class="st13" d="M186.3,964.8v-13.7c0-2.7,1.3-4,4-4h5.6" />
+    <path class="st13" d="M237.7,967.4v-3.4h32.5" />
+    <path class="st13" d="M237.7,967.4v3.4h19.2" />
+    <path class="st13" d="M222.6,974.1v-2.7c0-2.7,1.3-4,4-4h11" />
+    <path class="st13" d="M259.3,980.8v-3.4h44.1" />
+    <path class="st13" d="M259.3,980.8v3.4h33.3" />
+    <path class="st13" d="M222.6,974.1v2.7c0,2.7,1.3,4,4,4h32.6" />
+    <path class="st13" d="M209.3,982.5v-4.4c0-2.7,1.3-4,4-4h9.3" />
+    <path class="st13" d="M209.3,982.5v4.4c0,2.7,1.3,4,4,4h111.3" />
+    <path class="st13" d="M186.3,964.8v13.7c0,2.7,1.3,4,4,4h19" />
+    <path class="st13" d="M109.5,981.3v-12.4c0-2.7,1.3-4,4-4h72.8" />
+    <path class="st13" d="M109.5,981.3v16.4h0" />
+    <path class="st13" d="M62.6,714.1v263.2c0,2.7,1.3,4,4,4h42.9" />
+    <path class="st17" d="M56.4,887.2v-169.1c0-2.7,1.3-4,4-4h2.2" />
+    <path class="st13" d="M140.7,1007.8v-3.4h0" />
+    <path class="st13" d="M140.7,1007.8v3.4h0" />
+    <path class="st13" d="M140.7,1012.9v-5.1h0" />
+    <path class="st13" d="M140.7,1012.9v5h0" />
+    <path class="st13" d="M129.4,1023v-6.1c0-2.7,1.3-4,4-4h7.3" />
+    <path class="st13" d="M145.3,1028v-3.4h0" />
+    <path class="st13" d="M145.3,1028v3.4h2.9" />
+    <path class="st13" d="M143.8,1033.1v-5.1h1.5" />
+    <path class="st13" d="M143.8,1033.1v5.1h0" />
+    <path class="st13" d="M129.4,1023v6.1c0,2.7,1.3,4,4,4h10.4" />
+    <path class="st13" d="M112.2,1035.6v-8.6c0-2.7,1.3-4,4-4h13.2" />
+    <path class="st13" d="M128.7,1048.3v-3.4h27.5" />
+    <path class="st13" d="M128.7,1048.3v3.4h23.5" />
+    <path class="st13" d="M112.2,1035.6v8.7c0,2.7,1.3,4,4,4h12.5" />
+    <path class="st13" d="M99.5,1047v-7.4c0-2.7,1.3-4,4-4h8.7" />
+    <path class="st13" d="M99.5,1047v7.4c0,2.7,1.3,4,4,4h25.5" />
+    <path class="st13" d="M64.1,1060.3v-9.3c0-2.7,1.3-4,4-4h31.4" />
+    <path class="st13" d="M82.5,1068.5v-3.4h0" />
+    <path class="st13" d="M82.5,1068.5v3.4h5.3" />
+    <path class="st13" d="M76.3,1073.6v-1.1c0-2.7,1.3-4,4-4h2.2" />
+    <path class="st13" d="M76.3,1073.6v1.1c0,2.7,1.3,4,4,4h2.6" />
+    <path class="st13" d="M64.1,1060.3v9.3c0,2.7,1.3,4,4,4h8.1" />
+    <path class="st13" d="M56.4,887.2v169.1c0,2.7,1.3,4,4,4h3.8" />
+    <path class="st17" d="M45.6,1023.8v-132.6c0-2.7,1.3-4,4-4h6.8" />
+    <path class="st13" d="M91.7,1088.7v-3.4h2.7" />
+    <path class="st13" d="M91.7,1088.7v3.4h0" />
+    <path class="st13" d="M90.2,1093.8v-5.1h1.4" />
+    <path class="st13" d="M90.2,1093.8v5.1h0" />
+    <path class="st13" d="M82.5,1102.2v-4.4c0-2.7,1.3-4,4-4h3.7" />
+    <path class="st13" d="M105.4,1110.6v-1.1c0-2.7,1.3-4,4-4h16.3" />
+    <path class="st13" d="M110.8,1115.7v-3.4h0" />
+    <path class="st13" d="M110.8,1115.7v3.4h5.5" />
+    <path class="st13" d="M105.4,1110.6v1c0,2.7,1.3,4,4,4h1.4" />
+    <path class="st13" d="M82.5,1102.2v4.4c0,2.7,1.3,4,4,4h18.9" />
+    <path class="st13" d="M77.9,1122.4v-20.2h4.6" />
+    <path class="st13" d="M112.3,1129.2v-3.4h17.3" />
+    <path class="st13" d="M112.3,1129.2v3.4h8.2" />
+    <path class="st13" d="M98.1,1134.2v-1.1c0-2.7,1.3-4,4-4h10.2" />
+    <path class="st13" d="M98.1,1134.2v5.1h0" />
+    <path class="st13" d="M87.8,1142.7v-4.4c0-2.7,1.3-4,4-4h6.4" />
+    <path class="st13" d="M94.1,1151.1v-1.1c0-2.7,1.3-4,4-4h19.7" />
+    <path class="st13" d="M122.6,1156.2v-3.4h0" />
+    <path class="st13" d="M122.6,1156.2v3.4h37.4" />
+    <path class="st13" d="M94.1,1151.1v1.1c0,2.7,1.3,4,4,4h24.5" />
+    <path class="st13" d="M87.8,1142.7v4.4c0,2.7,1.3,4,4,4h2.4" />
+    <path class="st13" d="M77.9,1122.4v16.2c0,2.7,1.3,4,4,4h5.8" />
+    <path class="st13" d="M64.8,1144.4v-17.9c0-2.7,1.3-4,4-4h9.1" />
+    <path class="st13" d="M64.8,1144.4v17.9c0,2.7,1.3,4,4,4h121.8" />
+    <path class="st13" d="M59.1,1160.4v-12c0-2.7,1.3-4,4-4h1.7" />
+    <path class="st13" d="M67.4,1176.4v-3.4h0" />
+    <path class="st13" d="M67.4,1176.4v3.4h4.1" />
+    <path class="st13" d="M59.1,1160.4v12c0,2.7,1.3,4,4,4h4.3" />
+    <path class="st13" d="M45.6,1023.8v132.6c0,2.7,1.3,4,4,4h9.5" />
+    <path class="st17" d="M36.5,1107.7v-79.9c0-2.7,1.3-4,4-4h5.1" />
+    <path class="st17" d="M51.5,1191.6v-1.1c0-2.7,1.3-4,4-4h2.3" />
+    <path class="st17" d="M70.7,1196.6v-3.4h10.1" />
+    <path class="st17" d="M70.7,1196.6v3.4h15.5" />
+    <path class="st17" d="M51.5,1191.6v1.1c0,2.7,1.3,4,4,4h15.2" />
+    <path class="st17" d="M36.5,1107.7v79.9c0,2.7,1.3,4,4,4h11" />
+    <path class="st17" d="M29.4,1157.2v-45.5c0-2.7,1.3-4,4-4h3.1" />
+    <path class="st17" d="M29.4,1157.2v49.5h0" />
+    <path class="st17" d="M28.1,1185.3v-28.1h1.3" />
+    <path class="st17" d="M28.1,1185.3v28.1h0" />
+    <path class="st17" d="M27.1,1202.8v-17.4h1" />
+    <path class="st17" d="M27.1,1202.8v13.4c0,2.7,1.3,4,4,4h20.8" />
+    <path class="st17" d="M26.3,1219.9v-17.2h.8" />
+    <path class="st17" d="M26.3,1219.9v7h0" />
+    <path class="st17" d="M26.3,1237.1v-3.4h0" />
+    <path class="st17" d="M26.3,1237.1v3.4h0" />
+    <path class="st17" d="M26.3,1219.9v17.1h0" />
+    <circle cx="26.3" cy="1219.9" r="1" />
+    <circle cx="27.1" cy="1202.8" r=".5" />
+    <circle cx="28.1" cy="1185.3" r=".5" />
+    <circle cx="29.4" cy="1157.2" r=".5" />
+    <circle cx="36.5" cy="1107.7" r=".5" />
+    <path d="M45.6,1023.3c.3,0,.5.2.5.5s-.2.5-.5.5-.5-.2-.5-.5.2-.5.5-.5Z" />
+    <circle cx="56.4" cy="887.2" r=".5" />
+    <circle cx="62.6" cy="714.1" r=".5" />
+    <circle cx="74.7" cy="446.9" r=".5" />
+    <circle cx="84.9" cy="143" r=".5" />
+    <circle cx="184.1" cy="86.9" r=".5" />
+    <circle cx="224.3" cy="62.2" r=".5" />
+    <circle cx="323.1" cy="57.1" r=".5" />
+    <circle cx="323.1" cy="53.7" r="1" />
+    <circle cx="323.1" cy="60.5" r="1" />
+    <circle cx="280.4" cy="67.2" r="1" />
+    <circle cx="194.5" cy="111.7" r=".5" />
+    <circle cx="243.4" cy="96.3" r=".5" />
+    <circle cx="306.5" cy="88.3" r=".5" />
+    <circle cx="326.9" cy="82.4" r=".5" />
+    <circle cx="490.1" cy="77.3" r=".5" />
+    <circle cx="504.4" cy="74" r="1" />
+    <circle cx="501.6" cy="80.7" r="1" />
+    <circle cx="396" cy="87.4" r="1" />
+    <circle cx="466.9" cy="94.2" r="1" />
+    <circle cx="296.2" cy="104.3" r=".5" />
+    <circle cx="329" cy="100.9" r="1" />
+    <circle cx="315.1" cy="107.7" r="1" />
+    <circle cx="195.5" cy="127.1" r=".5" />
+    <circle cx="207.4" cy="119.5" r=".5" />
+    <circle cx="243.1" cy="114.4" r="1" />
+    <circle cx="223.8" cy="124.5" r=".5" />
+    <circle cx="244.1" cy="121.2" r="1" />
+    <circle cx="280" cy="127.9" r="1" />
+    <circle cx="247.5" cy="134.6" r="1" />
+    <circle cx="93.3" cy="199" r=".5" />
+    <circle cx="119.7" cy="173.2" r=".5" />
+    <circle cx="147.8" cy="155.7" r=".5" />
+    <circle cx="177.9" cy="149.8" r=".5" />
+    <circle cx="191.7" cy="144.8" r=".5" />
+    <circle cx="191.7" cy="141.4" r="1" />
+    <circle cx="191.7" cy="148.1" r="1" />
+    <circle cx="177.9" cy="154.9" r="1" />
+    <circle cx="147.8" cy="161.6" r="1" />
+    <circle cx="134.4" cy="190.7" r=".5" />
+    <circle cx="151.8" cy="182.7" r=".5" />
+    <circle cx="164.4" cy="176.8" r=".5" />
+    <circle cx="181.2" cy="171.7" r=".5" />
+    <circle cx="217.9" cy="168.4" r="1" />
+    <circle cx="223.7" cy="175.1" r="1" />
+    <circle cx="173.1" cy="181.8" r="1" />
+    <circle cx="152.8" cy="188.6" r="1" />
+    <circle cx="175.4" cy="198.7" r=".5" />
+    <circle cx="184.3" cy="195.3" r="1" />
+    <circle cx="192" cy="202.1" r="1" />
+    <circle cx="213.7" cy="224.8" r=".5" />
+    <circle cx="241.6" cy="217.2" r=".5" />
+    <circle cx="292.6" cy="212.2" r=".5" />
+    <circle cx="292.6" cy="208.8" r="1" />
+    <circle cx="294.9" cy="215.6" r="1" />
+    <circle cx="268" cy="222.3" r="1" />
+    <circle cx="276.7" cy="232.4" r=".5" />
+    <circle cx="366.9" cy="229" r="1" />
+    <circle cx="330.1" cy="235.8" r="1" />
+    <circle cx="195" cy="750.9" r=".5" />
+    <circle cx="205.2" cy="608.8" r=".5" />
+    <circle cx="318.6" cy="509.7" r=".5" />
+    <circle cx="325.6" cy="420.8" r=".5" />
+    <circle cx="363.9" cy="348.7" r=".5" />
+    <circle cx="394.7" cy="282.6" r=".5" />
+    <circle cx="404.2" cy="272" r=".5" />
+    <circle cx="413.7" cy="261.1" r=".5" />
+    <circle cx="431.8" cy="251" r=".5" />
+    <circle cx="447.5" cy="245.9" r=".5" />
+    <path d="M501.7,241.5c.6,0,1,.4,1,1s-.4,1-1,1-1-.4-1-1,.4-1,1-1Z" />
+    <circle cx="447.5" cy="249.3" r="1" />
+    <circle cx="431.8" cy="256" r="1" />
+    <circle cx="416.9" cy="271.2" r=".5" />
+    <circle cx="452.9" cy="266.1" r=".5" />
+    <circle cx="580.7" cy="262.8" r="1" />
+    <circle cx="478.3" cy="269.5" r="1" />
+    <circle cx="515.6" cy="276.2" r="1" />
+    <circle cx="477.9" cy="283" r="1" />
+    <circle cx="441.1" cy="293.1" r=".5" />
+    <circle cx="559.9" cy="289.7" r="1" />
+    <circle cx="490.4" cy="296.5" r="1" />
+    <circle cx="398.6" cy="414.8" r=".5" />
+    <circle cx="443.8" cy="370.6" r=".5" />
+    <circle cx="503.6" cy="341.7" r=".5" />
+    <circle cx="532.7" cy="326.2" r=".5" />
+    <circle cx="555.2" cy="308.3" r=".5" />
+    <circle cx="557.7" cy="303.2" r="1" />
+    <circle cx="594.4" cy="313.3" r=".5" />
+    <circle cx="602.3" cy="310" r="1" />
+    <circle cx="594.4" cy="316.7" r="1" />
+    <circle cx="577.1" cy="344.1" r=".5" />
+    <circle cx="701.5" cy="337.8" r=".5" />
+    <circle cx="757.8" cy="331.9" r=".5" />
+    <circle cx="786.2" cy="326.8" r=".5" />
+    <circle cx="796.6" cy="323.4" r="1" />
+    <circle cx="786.2" cy="330.2" r="1" />
+    <circle cx="757.8" cy="336.9" r="1" />
+    <circle cx="727.2" cy="343.7" r="1" />
+    <circle cx="710.5" cy="350.4" r="1" />
+    <circle cx="516.6" cy="357.2" r="1" />
+    <circle cx="470.3" cy="399.5" r=".5" />
+    <circle cx="492.5" cy="384.5" r=".5" />
+    <circle cx="501.4" cy="372.3" r=".5" />
+    <circle cx="536.5" cy="367.3" r=".5" />
+    <circle cx="555.6" cy="363.9" r="1" />
+    <circle cx="569" cy="370.6" r="1" />
+    <circle cx="519.3" cy="377.4" r="1" />
+    <circle cx="515.3" cy="396.8" r=".5" />
+    <circle cx="567" cy="389.2" r=".5" />
+    <circle cx="592" cy="384.1" r="1" />
+    <circle cx="594" cy="394.2" r=".5" />
+    <circle cx="626.3" cy="390.9" r="1" />
+    <circle cx="640.9" cy="397.6" r="1" />
+    <circle cx="566.8" cy="404.4" r="1" />
+    <circle cx="555.6" cy="414.5" r=".5" />
+    <circle cx="555.6" cy="411.1" r="1" />
+    <circle cx="555.6" cy="417.8" r="1" />
+    <circle cx="499" cy="458.9" r=".5" />
+    <circle cx="595.8" cy="445.2" r=".5" />
+    <circle cx="661.8" cy="438.9" r=".5" />
+    <circle cx="661.8" cy="433" r=".5" />
+    <circle cx="661.8" cy="428" r=".5" />
+    <circle cx="661.8" cy="424.6" r="1" />
+    <circle cx="661.8" cy="431.3" r="1" />
+    <circle cx="661.8" cy="438.1" r="1" />
+    <circle cx="661.8" cy="444.8" r="1" />
+    <circle cx="658.9" cy="451.5" r="1" />
+    <circle cx="532.9" cy="472.6" r=".5" />
+    <circle cx="564" cy="466.7" r=".5" />
+    <circle cx="588.3" cy="461.7" r=".5" />
+    <circle cx="623.5" cy="458.3" r="1" />
+    <circle cx="588.3" cy="465" r="1" />
+    <circle cx="578.5" cy="471.8" r="1" />
+    <circle cx="582.6" cy="478.5" r="1" />
+    <circle cx="334.8" cy="492.8" r=".5" />
+    <circle cx="385.8" cy="485.3" r="1" />
+    <circle cx="373.2" cy="500.4" r=".5" />
+    <circle cx="401.3" cy="495.4" r=".5" />
+    <circle cx="481" cy="492" r="1" />
+    <circle cx="424.9" cy="498.7" r="1" />
+    <circle cx="396.8" cy="505.5" r="1" />
+    <circle cx="364.2" cy="598.7" r=".5" />
+    <circle cx="367.1" cy="572.2" r=".5" />
+    <circle cx="372.3" cy="552.1" r=".5" />
+    <circle cx="391.7" cy="534.6" r=".5" />
+    <circle cx="471.7" cy="519.8" r=".5" />
+    <circle cx="504.1" cy="512.2" r="1" />
+    <circle cx="543" cy="527.4" r=".5" />
+    <circle cx="720.2" cy="522.3" r=".5" />
+    <circle cx="720.2" cy="519" r="1" />
+    <circle cx="776.3" cy="525.7" r="1" />
+    <circle cx="574.7" cy="532.5" r="1" />
+    <circle cx="411.7" cy="549.3" r=".5" />
+    <circle cx="422.9" cy="542.6" r=".5" />
+    <circle cx="422.9" cy="539.2" r="1" />
+    <circle cx="422.9" cy="545.9" r="1" />
+    <circle cx="426.3" cy="556.1" r=".5" />
+    <circle cx="429" cy="552.7" r="1" />
+    <circle cx="426.3" cy="559.4" r="1" />
+    <circle cx="470.6" cy="569.5" r=".5" />
+    <circle cx="635.9" cy="566.2" r="1" />
+    <circle cx="560.6" cy="572.9" r="1" />
+    <circle cx="381" cy="592.3" r=".5" />
+    <circle cx="384.7" cy="584.7" r=".5" />
+    <circle cx="408.7" cy="579.7" r="1" />
+    <circle cx="386.6" cy="589.8" r=".5" />
+    <circle cx="410.6" cy="586.4" r="1" />
+    <circle cx="468.3" cy="593.1" r="1" />
+    <circle cx="403.1" cy="599.9" r="1" />
+    <circle cx="379.3" cy="625.2" r=".5" />
+    <circle cx="446.4" cy="616.7" r=".5" />
+    <circle cx="458.5" cy="610" r=".5" />
+    <circle cx="551.3" cy="606.6" r="1" />
+    <circle cx="475" cy="613.4" r="1" />
+    <circle cx="645.5" cy="623.5" r=".5" />
+    <circle cx="666.9" cy="620.1" r="1" />
+    <circle cx="649.5" cy="626.9" r="1" />
+    <circle cx="440.3" cy="633.6" r="1" />
+    <circle cx="208.4" cy="707.9" r=".5" />
+    <circle cx="296.2" cy="660.6" r=".5" />
+    <circle cx="354.8" cy="650.5" r=".5" />
+    <circle cx="398.5" cy="643.7" r=".5" />
+    <circle cx="400.9" cy="640.3" r="1" />
+    <circle cx="398.5" cy="647.1" r="1" />
+    <circle cx="379.2" cy="657.2" r=".5" />
+    <circle cx="396.9" cy="653.8" r="1" />
+    <circle cx="387.3" cy="660.6" r="1" />
+    <circle cx="775.6" cy="670.7" r=".5" />
+    <circle cx="814.2" cy="667.3" r="1" />
+    <circle cx="796" cy="674.1" r="1" />
+    <circle cx="310.8" cy="755.2" r=".5" />
+    <circle cx="321.4" cy="706.7" r=".5" />
+    <circle cx="417.1" cy="692.2" r=".5" />
+    <circle cx="450.9" cy="684.2" r=".5" />
+    <circle cx="478.4" cy="680.8" r="1" />
+    <circle cx="474.5" cy="687.5" r="1" />
+    <circle cx="465" cy="700.2" r=".5" />
+    <circle cx="621.7" cy="694.3" r="1" />
+    <circle cx="489" cy="706.1" r=".5" />
+    <circle cx="503.7" cy="701" r="1" />
+    <circle cx="500.4" cy="711.1" r=".5" />
+    <circle cx="500.4" cy="707.8" r="1" />
+    <circle cx="500.4" cy="714.5" r="1" />
+    <circle cx="390.4" cy="721.3" r="1" />
+    <circle cx="324.5" cy="803.7" r=".5" />
+    <circle cx="334.3" cy="773.6" r=".5" />
+    <circle cx="375.5" cy="753.5" r=".5" />
+    <circle cx="465.1" cy="735.2" r=".5" />
+    <circle cx="637.4" cy="728" r="1" />
+    <circle cx="524.8" cy="742.3" r=".5" />
+    <circle cx="547.1" cy="734.7" r="1" />
+    <circle cx="554.2" cy="749.9" r=".5" />
+    <circle cx="589.6" cy="744.9" r=".5" />
+    <circle cx="589.6" cy="741.5" r="1" />
+    <circle cx="708.4" cy="748.2" r="1" />
+    <circle cx="583.6" cy="755" r="1" />
+    <circle cx="396.4" cy="771.8" r=".5" />
+    <circle cx="426.9" cy="765.1" r=".5" />
+    <circle cx="545.7" cy="761.7" r="1" />
+    <circle cx="440.1" cy="768.5" r="1" />
+    <circle cx="417.5" cy="778.6" r=".5" />
+    <circle cx="494.6" cy="775.2" r="1" />
+    <circle cx="472.5" cy="781.9" r="1" />
+    <circle cx="455.8" cy="793.7" r=".5" />
+    <circle cx="545.2" cy="788.7" r="1" />
+    <circle cx="550.8" cy="798.8" r=".5" />
+    <circle cx="578.8" cy="795.4" r="1" />
+    <circle cx="574.4" cy="802.2" r="1" />
+    <circle cx="364.9" cy="833.8" r=".5" />
+    <circle cx="366.6" cy="824.9" r=".5" />
+    <circle cx="381.1" cy="817.3" r=".5" />
+    <circle cx="383.6" cy="812.3" r=".5" />
+    <circle cx="383.6" cy="808.9" r="1" />
+    <circle cx="383.6" cy="815.7" r="1" />
+    <circle cx="381.1" cy="822.4" r="1" />
+    <circle cx="377.8" cy="832.5" r=".5" />
+    <circle cx="397.7" cy="829.1" r="1" />
+    <circle cx="383.4" cy="835.9" r="1" />
+    <circle cx="376.8" cy="842.6" r="1" />
+    <circle cx="322.8" cy="893" r=".5" />
+    <circle cx="413.4" cy="867.9" r=".5" />
+    <circle cx="433" cy="859.5" r=".5" />
+    <circle cx="441.2" cy="852.7" r=".5" />
+    <circle cx="453.4" cy="849.4" r="1" />
+    <circle cx="454.6" cy="856.1" r="1" />
+    <circle cx="456.4" cy="866.2" r=".5" />
+    <circle cx="456.4" cy="862.8" r="1" />
+    <circle cx="554.5" cy="869.6" r="1" />
+    <circle cx="449.3" cy="876.3" r="1" />
+    <circle cx="325.2" cy="918.1" r=".5" />
+    <circle cx="336.6" cy="909.2" r=".5" />
+    <circle cx="355.4" cy="901.6" r=".5" />
+    <circle cx="374.1" cy="893.2" r=".5" />
+    <circle cx="405.4" cy="886.4" r=".5" />
+    <circle cx="405.4" cy="883.1" r="1" />
+    <circle cx="436" cy="889.8" r="1" />
+    <circle cx="439.9" cy="899.9" r=".5" />
+    <circle cx="461.3" cy="896.6" r="1" />
+    <circle cx="550.6" cy="903.3" r="1" />
+    <circle cx="449.9" cy="910" r="1" />
+    <circle cx="391.6" cy="916.8" r="1" />
+    <circle cx="359.9" cy="926.9" r=".5" />
+    <circle cx="373.2" cy="923.5" r="1" />
+    <circle cx="373.3" cy="930.3" r="1" />
+    <circle cx="109.5" cy="981.3" r=".5" />
+    <circle cx="186.3" cy="964.8" r=".5" />
+    <circle cx="195.9" cy="947.1" r=".5" />
+    <circle cx="209.8" cy="940.4" r=".5" />
+    <circle cx="249.9" cy="937" r="1" />
+    <circle cx="246.3" cy="943.8" r="1" />
+    <circle cx="312" cy="953.9" r=".5" />
+    <circle cx="362.8" cy="950.5" r="1" />
+    <circle cx="340.4" cy="957.2" r="1" />
+    <circle cx="209.3" cy="982.5" r=".5" />
+    <circle cx="222.6" cy="974.1" r=".5" />
+    <circle cx="237.7" cy="967.4" r=".5" />
+    <circle cx="270.1" cy="964" r="1" />
+    <circle cx="256.8" cy="970.7" r="1" />
+    <circle cx="259.3" cy="980.8" r=".5" />
+    <circle cx="303.4" cy="977.5" r="1" />
+    <circle cx="292.6" cy="984.2" r="1" />
+    <circle cx="324.6" cy="991" r="1" />
+    <circle cx="109.5" cy="997.7" r="1" />
+    <circle cx="64.1" cy="1060.3" r=".5" />
+    <circle cx="99.5" cy="1047" r=".5" />
+    <circle cx="112.2" cy="1035.6" r=".5" />
+    <circle cx="129.4" cy="1023" r=".5" />
+    <circle cx="140.7" cy="1012.9" r=".5" />
+    <circle cx="140.7" cy="1007.8" r=".5" />
+    <circle cx="140.7" cy="1004.4" r="1" />
+    <path d="M140.7,1010.2c.6,0,1,.4,1,1s-.4,1-1,1-1-.4-1-1,.4-1,1-1Z" />
+    <circle cx="140.7" cy="1017.9" r="1" />
+    <circle cx="143.8" cy="1033.1" r=".5" />
+    <circle cx="145.3" cy="1028" r=".5" />
+    <circle cx="145.3" cy="1024.7" r="1" />
+    <circle cx="148.1" cy="1031.4" r="1" />
+    <circle cx="143.8" cy="1038.2" r="1" />
+    <circle cx="128.7" cy="1048.3" r=".5" />
+    <circle cx="156.2" cy="1044.9" r="1" />
+    <circle cx="152.2" cy="1051.6" r="1" />
+    <circle cx="129" cy="1058.4" r="1" />
+    <circle cx="76.3" cy="1073.6" r=".5" />
+    <circle cx="82.5" cy="1068.5" r=".5" />
+    <circle cx="82.5" cy="1065.1" r="1" />
+    <circle cx="87.8" cy="1071.9" r="1" />
+    <circle cx="82.8" cy="1078.6" r="1" />
+    <circle cx="59.1" cy="1160.4" r=".5" />
+    <circle cx="64.8" cy="1144.4" r=".5" />
+    <circle cx="77.9" cy="1122.4" r=".5" />
+    <circle cx="82.5" cy="1102.2" r=".5" />
+    <circle cx="90.2" cy="1093.8" r=".5" />
+    <circle cx="91.7" cy="1088.7" r=".5" />
+    <circle cx="94.4" cy="1085.4" r="1" />
+    <circle cx="91.7" cy="1092.1" r="1" />
+    <circle cx="90.2" cy="1098.8" r="1" />
+    <circle cx="105.4" cy="1110.6" r=".5" />
+    <circle cx="125.7" cy="1105.6" r="1" />
+    <circle cx="110.8" cy="1115.7" r=".5" />
+    <circle cx="110.8" cy="1112.3" r="1" />
+    <circle cx="116.3" cy="1119.1" r="1" />
+    <circle cx="87.8" cy="1142.7" r=".5" />
+    <circle cx="98.1" cy="1134.2" r=".5" />
+    <circle cx="112.3" cy="1129.2" r=".5" />
+    <circle cx="129.7" cy="1125.8" r="1" />
+    <circle cx="120.5" cy="1132.6" r="1" />
+    <circle cx="98.1" cy="1139.3" r="1" />
+    <circle cx="94.1" cy="1151.1" r=".5" />
+    <circle cx="117.8" cy="1146" r="1" />
+    <circle cx="122.6" cy="1156.2" r=".5" />
+    <circle cx="122.6" cy="1152.8" r="1" />
+    <circle cx="160" cy="1159.5" r="1" />
+    <circle cx="190.6" cy="1166.3" r="1" />
+    <circle cx="67.4" cy="1176.4" r=".5" />
+    <circle cx="67.4" cy="1173" r="1" />
+    <circle cx="71.5" cy="1179.8" r="1" />
+    <circle cx="51.5" cy="1191.6" r=".5" />
+    <circle cx="57.8" cy="1186.5" r="1" />
+    <circle cx="70.7" cy="1196.6" r=".5" />
+    <circle cx="80.8" cy="1193.2" r="1" />
+    <circle cx="86.2" cy="1200" r="1" />
+    <circle cx="29.4" cy="1206.7" r="1" />
+    <circle cx="28.1" cy="1213.5" r="1" />
+    <circle cx="51.8" cy="1220.2" r="1" />
+    <circle cx="26.3" cy="1227" r="1" />
+    <circle cx="26.3" cy="1237.1" r=".5" />
+    <circle cx="26.3" cy="1233.7" r="1" />
+    <circle cx="26.3" cy="1240.4" r="1" />
+    <polygon class="st4" points="822.9 49.7 829.6 49.7 829.6 56.4 822.9 56.4 822.9 49.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 57.7)" id="leaf-0" data-siglum="Ad_2_AT3_13"><tspan x="0" y="0">Ad_2_AT3_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 56.4 829.6 56.4 829.6 63.1 822.9 63.1 822.9 56.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 64.4)" id="leaf-1" data-siglum="S_2_AT3_13"><tspan x="0" y="0">S_2_AT3_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 63.2 829.6 63.2 829.6 69.9 822.9 69.9 822.9 63.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 71.2)" id="leaf-2" data-siglum="C1_0_0_12"><tspan x="0" y="0">C1_0_0_12</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 69.9 829.6 69.9 829.6 76.6 822.9 76.6 822.9 69.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 77.9)" id="leaf-3" data-siglum="Co_0_FR6_13"><tspan x="0" y="0">Co_0_FR6_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 76.6 829.6 76.6 829.6 83.3 822.9 83.3 822.9 76.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 84.6)" id="leaf-4" data-siglum="Ny2_0_FR6_13"><tspan x="0" y="0">Ny2_0_FR6_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 83.4 829.6 83.4 829.6 90.1 822.9 90.1 822.9 83.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 91.4)" id="leaf-5" data-siglum="M18_1_DE4_15"><tspan x="0" y="0">M18_1_DE4_15</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 90.1 829.6 90.1 829.6 96.8 822.9 96.8 822.9 90.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 98.1)" id="leaf-6" data-siglum="R_2_FR3_13"><tspan x="0" y="0">R_2_FR3_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 96.9 829.6 96.9 829.6 103.6 822.9 103.6 822.9 96.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 104.9)" id="leaf-7" data-siglum="B4_0_0_15"><tspan x="0" y="0">B4_0_0_15</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 103.6 829.6 103.6 829.6 110.3 822.9 110.3 822.9 103.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 111.6)" id="leaf-8" data-siglum="Ny_2_FR3_13"><tspan x="0" y="0">Ny_2_FR3_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 110.4 829.6 110.4 829.6 117.1 822.9 117.1 822.9 110.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 118.4)" id="leaf-9" data-siglum="Bc_1_ES1_14"><tspan x="0" y="0">Bc_1_ES1_14</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 117.1 829.6 117.1 829.6 123.8 822.9 123.8 822.9 117.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 125.1)" id="leaf-10" data-siglum="P4_2_FR3_13"><tspan x="0" y="0">P4_2_FR3_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 123.8 829.6 123.8 829.6 130.5 822.9 130.5 822.9 123.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 131.8)" id="leaf-11" data-siglum="M10_0_0_15"><tspan x="0" y="0">M10_0_0_15</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 130.6 829.6 130.6 829.6 137.3 822.9 137.3 822.9 130.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 138.6)" id="leaf-12" data-siglum="F2_1_IT1_13"><tspan x="0" y="0">F2_1_IT1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 137.3 829.6 137.3 829.6 144 822.9 144 822.9 137.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 145.3)" id="leaf-13" data-siglum="Lf_1_FR1_14"><tspan x="0" y="0">Lf_1_FR1_14</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 144.1 829.6 144.1 829.6 150.8 822.9 150.8 822.9 144.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 152.1)" id="leaf-14" data-siglum="C5_1_FR1_13"><tspan x="0" y="0">C5_1_FR1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 150.8 829.6 150.8 829.6 157.5 822.9 157.5 822.9 150.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 158.8)" id="leaf-15" data-siglum="O4_1_FR1_13"><tspan x="0" y="0">O4_1_FR1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 157.6 829.6 157.6 829.6 164.3 822.9 164.3 822.9 157.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 165.6)" id="leaf-16" data-siglum="M1_1_Fr1_13"><tspan x="0" y="0">M1_1_Fr1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 164.3 829.6 164.3 829.6 171 822.9 171 822.9 164.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 172.3)" id="leaf-17" data-siglum="Br1_1_BE1_13"><tspan x="0" y="0">Br1_1_BE1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 171 829.6 171 829.6 177.7 822.9 177.7 822.9 171" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 179)" id="leaf-18" data-siglum="B1_0_0_13"><tspan x="0" y="0">B1_0_0_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 177.8 829.6 177.8 829.6 184.5 822.9 184.5 822.9 177.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 185.8)" id="leaf-19" data-siglum="B6b_0_0_15"><tspan x="0" y="0">B6b_0_0_15</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 184.5 829.6 184.5 829.6 191.2 822.9 191.2 822.9 184.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 192.5)" id="leaf-20" data-siglum="O7_1_GB1_13"><tspan x="0" y="0">O7_1_GB1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 191.3 829.6 191.3 829.6 198 822.9 198 822.9 191.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 199.3)" id="leaf-21" data-siglum="A1_0_0_15"><tspan x="0" y="0">A1_0_0_15</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 198 829.6 198 829.6 204.7 822.9 204.7 822.9 198" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 206)" id="leaf-22" data-siglum="M22_0_0_15"><tspan x="0" y="0">M22_0_0_15</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 204.8 829.6 204.8 829.6 211.5 822.9 211.5 822.9 204.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 212.8)" id="leaf-23" data-siglum="Ax_1_FR2_13"><tspan x="0" y="0">Ax_1_FR2_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 211.5 829.6 211.5 829.6 218.2 822.9 218.2 822.9 211.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 219.5)" id="leaf-24" data-siglum="D_0_0_13"><tspan x="0" y="0">D_0_0_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 218.2 829.6 218.2 829.6 224.9 822.9 224.9 822.9 218.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 226.2)" id="leaf-25" data-siglum="Ln_1_FR2_13"><tspan x="0" y="0">Ln_1_FR2_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 225 829.6 225 829.6 231.7 822.9 231.7 822.9 225" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 233)" id="leaf-26" data-siglum="P6_0_0_13"><tspan x="0" y="0">P6_0_0_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 231.7 829.6 231.7 829.6 238.4 822.9 238.4 822.9 231.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 239.7)" id="leaf-27" data-siglum="CH_0_0_13"><tspan x="0" y="0">CH_0_0_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 238.5 829.6 238.5 829.6 245.2 822.9 245.2 822.9 238.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 246.5)" id="leaf-28" data-siglum="Kr_0_CH2_14"><tspan x="0" y="0">Kr_0_CH2_14</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 245.2 829.6 245.2 829.6 251.9 822.9 251.9 822.9 245.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 253.2)" id="leaf-29" data-siglum="St_0_0_15"><tspan x="0" y="0">St_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 252 829.6 252 829.6 258.7 822.9 258.7 822.9 252" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 260)" id="leaf-30" data-siglum="C11_0_0_15"><tspan x="0" y="0">C11_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 258.7 829.6 258.7 829.6 265.4 822.9 265.4 822.9 258.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 266.7)" id="leaf-31" data-siglum="L19_1_GB5_15"><tspan x="0" y="0">L19_1_GB5_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 265.4 829.6 265.4 829.6 272.1 822.9 272.1 822.9 265.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 273.4)" id="leaf-32" data-siglum="Phx_0_0_15"><tspan x="0" y="0">Phx_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 272.2 829.6 272.2 829.6 278.9 822.9 278.9 822.9 272.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 280.2)" id="leaf-33" data-siglum="Wfx_0_0_15"><tspan x="0" y="0">Wfx_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 278.9 829.6 278.9 829.6 285.6 822.9 285.6 822.9 278.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 286.9)" id="leaf-34" data-siglum="Aa_2_CH2_14"><tspan x="0" y="0">Aa_2_CH2_14</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 285.7 829.6 285.7 829.6 292.4 822.9 292.4 822.9 285.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 293.7)" id="leaf-35" data-siglum="L2_3_GB2_13"><tspan x="0" y="0">L2_3_GB2_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 292.4 829.6 292.4 829.6 299.1 822.9 299.1 822.9 292.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 300.4)" id="leaf-36" data-siglum="B2_0_0_14"><tspan x="0" y="0">B2_0_0_14</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 299.1 829.6 299.1 829.6 305.9 822.9 305.9 822.9 299.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 307.1)" id="leaf-37" data-siglum="W2_0_0_13"><tspan x="0" y="0">W2_0_0_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 305.9 829.6 305.9 829.6 312.6 822.9 312.6 822.9 305.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 313.9)" id="leaf-38" data-siglum="NC_1_GB6_13"><tspan x="0" y="0">NC_1_GB6_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 312.6 829.6 312.6 829.6 319.3 822.9 319.3 822.9 312.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 320.6)" id="leaf-39" data-siglum="Y_2_FR4_14"><tspan x="0" y="0">Y_2_FR4_14</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 319.4 829.6 319.4 829.6 326.1 822.9 326.1 822.9 319.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 327.4)" id="leaf-40" data-siglum="P12_2_GB4_13"><tspan x="0" y="0">P12_2_GB4_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 326.1 829.6 326.1 829.6 332.8 822.9 332.8 822.9 326.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 334.1)" id="leaf-41" data-siglum="L6_2_GB4_13"><tspan x="0" y="0">L6_2_GB4_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 332.9 829.6 332.9 829.6 339.6 822.9 339.6 822.9 332.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 340.9)" id="leaf-42" data-siglum="Ny1_2_GB4_13"><tspan x="0" y="0">Ny1_2_GB4_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 339.6 829.6 339.6 829.6 346.3 822.9 346.3 822.9 339.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 347.6)" id="leaf-43" data-siglum="Vi_2_FR4_13"><tspan x="0" y="0">Vi_2_FR4_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 346.3 829.6 346.3 829.6 353.1 822.9 353.1 822.9 346.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 354.3)" id="leaf-44" data-siglum="Bo1_0_0_14"><tspan x="0" y="0">Bo1_0_0_14</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 353.1 829.6 353.1 829.6 359.8 822.9 359.8 822.9 353.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 361.1)" id="leaf-45" data-siglum="Ma1_0_0_15"><tspan x="0" y="0">Ma1_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 359.8 829.6 359.8 829.6 366.5 822.9 366.5 822.9 359.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 367.8)" id="leaf-46" data-siglum="W5_2_AT3_13"><tspan x="0" y="0">W5_2_AT3_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 366.6 829.6 366.6 829.6 373.3 822.9 373.3 822.9 366.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 374.6)" id="leaf-47" data-siglum="Ot_0_0_15"><tspan x="0" y="0">Ot_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 373.3 829.6 373.3 829.6 380 822.9 380 822.9 373.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 381.3)" id="leaf-48" data-siglum="Pr_0_0_14"><tspan x="0" y="0">Pr_0_0_14</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 380.1 829.6 380.1 829.6 386.8 822.9 386.8 822.9 380.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 388.1)" id="leaf-49" data-siglum="P15_1_DE5_15"><tspan x="0" y="0">P15_1_DE5_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 386.8 829.6 386.8 829.6 393.5 822.9 393.5 822.9 386.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 394.8)" id="leaf-50" data-siglum="A_1_DE5_14"><tspan x="0" y="0">A_1_DE5_14</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 393.5 829.6 393.5 829.6 400.3 822.9 400.3 822.9 393.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 401.5)" id="leaf-51" data-siglum="Lv_0_0_15"><tspan x="0" y="0">Lv_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 400.3 829.6 400.3 829.6 407 822.9 407 822.9 400.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 408.3)" id="leaf-52" data-siglum="Ph2_0_0_15"><tspan x="0" y="0">Ph2_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 407 829.6 407 829.6 413.7 822.9 413.7 822.9 407" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 415)" id="leaf-53" data-siglum="Mo_2_FR4_16"><tspan x="0" y="0">Mo_2_FR4_16</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 413.8 829.6 413.8 829.6 420.5 822.9 420.5 822.9 413.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 421.8)" id="leaf-54" data-siglum="Ly1_2_FR4_13"><tspan x="0" y="0">Ly1_2_FR4_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 420.5 829.6 420.5 829.6 427.2 822.9 427.2 822.9 420.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 428.5)" id="leaf-55" data-siglum="Z1_4_CH1_15"><tspan x="0" y="0">Z1_4_CH1_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 427.3 829.6 427.3 829.6 434 822.9 434 822.9 427.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 435.3)" id="leaf-56" data-siglum="Da_4_CH1_15"><tspan x="0" y="0">Da_4_CH1_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 434 829.6 434 829.6 440.7 822.9 440.7 822.9 434" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 442)" id="leaf-57" data-siglum="Fm_4_CH1_15"><tspan x="0" y="0">Fm_4_CH1_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 440.7 829.6 440.7 829.6 447.4 822.9 447.4 822.9 440.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 448.7)" id="leaf-58" data-siglum="Wf4_4_CH1_15"><tspan x="0" y="0">Wf4_4_CH1_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 447.5 829.6 447.5 829.6 454.2 822.9 454.2 822.9 447.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 455.5)" id="leaf-59" data-siglum="U_0_0_13"><tspan x="0" y="0">U_0_0_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 454.2 829.6 454.2 829.6 460.9 822.9 460.9 822.9 454.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 462.2)" id="leaf-60" data-siglum="Le1_6_NL1_15"><tspan x="0" y="0">Le1_6_NL1_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 461 829.6 461 829.6 467.7 822.9 467.7 822.9 461" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 469)" id="leaf-61" data-siglum="P14_0_0_15"><tspan x="0" y="0">P14_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 467.7 829.6 467.7 829.6 474.4 822.9 474.4 822.9 467.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 475.7)" id="leaf-62" data-siglum="We1_6_NL1_15"><tspan x="0" y="0">We1_6_NL1_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 474.5 829.6 474.5 829.6 481.2 822.9 481.2 822.9 474.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 482.5)" id="leaf-63" data-siglum="V8_4_CH1_15"><tspan x="0" y="0">V8_4_CH1_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 481.2 829.6 481.2 829.6 487.9 822.9 487.9 822.9 481.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 489.2)" id="leaf-64" data-siglum="Sg_1_IT1_13"><tspan x="0" y="0">Sg_1_IT1_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 487.9 829.6 487.9 829.6 494.6 822.9 494.6 822.9 487.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 495.9)" id="leaf-65" data-siglum="Le_0_0_13"><tspan x="0" y="0">Le_0_0_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 494.7 829.6 494.7 829.6 501.4 822.9 501.4 822.9 494.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 502.7)" id="leaf-66" data-siglum="V_1_IT1_13"><tspan x="0" y="0">V_1_IT1_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 501.4 829.6 501.4 829.6 508.1 822.9 508.1 822.9 501.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 509.4)" id="leaf-67" data-siglum="Dh_0_0_15"><tspan x="0" y="0">Dh_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 508.2 829.6 508.2 829.6 514.9 822.9 514.9 822.9 508.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 516.2)" id="leaf-68" data-siglum="W4_0_0_13"><tspan x="0" y="0">W4_0_0_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 514.9 829.6 514.9 829.6 521.6 822.9 521.6 822.9 514.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 522.9)" id="leaf-69" data-siglum="M16_0_0_15"><tspan x="0" y="0">M16_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 521.7 829.6 521.7 829.6 528.4 822.9 528.4 822.9 521.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 529.7)" id="leaf-70" data-siglum="X_0_0_15"><tspan x="0" y="0">X_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 528.4 829.6 528.4 829.6 535.1 822.9 535.1 822.9 528.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 536.4)" id="leaf-71" data-siglum="Tn_0_0_13"><tspan x="0" y="0">Tn_0_0_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 535.1 829.6 535.1 829.6 541.8 822.9 541.8 822.9 535.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 543.1)" id="leaf-72" data-siglum="Ma_1_IT1_13"><tspan x="0" y="0">Ma_1_IT1_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 541.9 829.6 541.9 829.6 548.6 822.9 548.6 822.9 541.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 549.9)" id="leaf-73" data-siglum="Wr1_1_IT1_14"><tspan x="0" y="0">Wr1_1_IT1_14</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 548.6 829.6 548.6 829.6 555.3 822.9 555.3 822.9 548.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 556.6)" id="leaf-74" data-siglum="Nue_1_DE3_15"><tspan x="0" y="0">Nue_1_DE3_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 555.4 829.6 555.4 829.6 562.1 822.9 562.1 822.9 555.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 563.4)" id="leaf-75" data-siglum="Vi1_1_IT1_13"><tspan x="0" y="0">Vi1_1_IT1_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 562.1 829.6 562.1 829.6 568.8 822.9 568.8 822.9 562.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 570.1)" id="leaf-76" data-siglum="Ba_0_0_13"><tspan x="0" y="0">Ba_0_0_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 568.9 829.6 568.9 829.6 575.6 822.9 575.6 822.9 568.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 576.9)" id="leaf-77" data-siglum="O5_0_0_13"><tspan x="0" y="0">O5_0_0_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 575.6 829.6 575.6 829.6 582.3 822.9 582.3 822.9 575.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 583.6)" id="leaf-78" data-siglum="L12_0_0_13"><tspan x="0" y="0">L12_0_0_13</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 582.3 829.6 582.3 829.6 589 822.9 589 822.9 582.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 590.3)" id="leaf-79" data-siglum="M14_0_0_15"><tspan x="0" y="0">M14_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 589.1 829.6 589.1 829.6 595.8 822.9 595.8 822.9 589.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 597.1)" id="leaf-80" data-siglum="M9_0_0_15"><tspan x="0" y="0">M9_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 595.8 829.6 595.8 829.6 602.5 822.9 602.5 822.9 595.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 603.8)" id="leaf-81" data-siglum="Bn_0_0_14"><tspan x="0" y="0">Bn_0_0_14</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 602.6 829.6 602.6 829.6 609.3 822.9 609.3 822.9 602.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 610.6)" id="leaf-82" data-siglum="Goe1_0_0_15"><tspan x="0" y="0">Goe1_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 609.3 829.6 609.3 829.6 616 822.9 616 822.9 609.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 617.3)" id="leaf-83" data-siglum="M13_0_0_15"><tspan x="0" y="0">M13_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 616.1 829.6 616.1 829.6 622.8 822.9 622.8 822.9 616.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 624.1)" id="leaf-84" data-siglum="B7_0_0_15"><tspan x="0" y="0">B7_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 622.8 829.6 622.8 829.6 629.5 822.9 629.5 822.9 622.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 630.8)" id="leaf-85" data-siglum="B8_0_0_15"><tspan x="0" y="0">B8_0_0_15</tspan></text>
+    </g>
+    <polygon class="st2" points="822.9 629.5 829.6 629.5 829.6 636.2 822.9 636.2 822.9 629.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 637.5)" id="leaf-86" data-siglum="M6_1_DE3_14"><tspan x="0" y="0">M6_1_DE3_14</tspan></text>
+    </g>
+    <polygon class="st5" points="822.9 636.3 829.6 636.3 829.6 643 822.9 643 822.9 636.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 644.3)" id="leaf-87" data-siglum="W3_1_DE2_13"><tspan x="0" y="0">W3_1_DE2_13</tspan></text>
+    </g>
+    <polygon class="st5" points="822.9 643 829.6 643 829.6 649.7 822.9 649.7 822.9 643" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 651)" id="leaf-88" data-siglum="E1_1_DE2_14"><tspan x="0" y="0">E1_1_DE2_14</tspan></text>
+    </g>
+    <polygon class="st5" points="822.9 649.8 829.6 649.8 829.6 656.5 822.9 656.5 822.9 649.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 657.8)" id="leaf-89" data-siglum="P7_0_0_13"><tspan x="0" y="0">P7_0_0_13</tspan></text>
+    </g>
+    <polygon class="st5" points="822.9 656.5 829.6 656.5 829.6 663.2 822.9 663.2 822.9 656.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 664.5)" id="leaf-90" data-siglum="L4_0_0_13"><tspan x="0" y="0">L4_0_0_13</tspan></text>
+    </g>
+    <polygon class="st5" points="822.9 663.3 829.6 663.3 829.6 670 822.9 670 822.9 663.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 671.3)" id="leaf-91" data-siglum="Ny3_5_IT2_14"><tspan x="0" y="0">Ny3_5_IT2_14</tspan></text>
+    </g>
+    <polygon class="st5" points="822.9 670 829.6 670 829.6 676.7 822.9 676.7 822.9 670" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 678)" id="leaf-92" data-siglum="Ba1_5_IT2_14"><tspan x="0" y="0">Ba1_5_IT2_14</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 676.7 829.6 676.7 829.6 683.4 822.9 683.4 822.9 676.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 684.7)" id="leaf-93" data-siglum="Br2_1_BE1_14"><tspan x="0" y="0">Br2_1_BE1_14</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 683.5 829.6 683.5 829.6 690.2 822.9 690.2 822.9 683.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 691.5)" id="leaf-94" data-siglum="Ve_0_0_13"><tspan x="0" y="0">Ve_0_0_13</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 690.2 829.6 690.2 829.6 696.9 822.9 696.9 822.9 690.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 698.2)" id="leaf-95" data-siglum="Mv_1_GB3_13"><tspan x="0" y="0">Mv_1_GB3_13</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 697 829.6 697 829.6 703.7 822.9 703.7 822.9 697" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 705)" id="leaf-96" data-siglum="C10_1_GB1_14"><tspan x="0" y="0">C10_1_GB1_14</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 703.7 829.6 703.7 829.6 710.4 822.9 710.4 822.9 703.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 711.7)" id="leaf-97" data-siglum="O3_1_GB1_13"><tspan x="0" y="0">O3_1_GB1_13</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 710.4 829.6 710.4 829.6 717.2 822.9 717.2 822.9 710.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 718.4)" id="leaf-98" data-siglum="B_1_GB1_12"><tspan x="0" y="0">B_1_GB1_12</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 717.2 829.6 717.2 829.6 723.9 822.9 723.9 822.9 717.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 725.2)" id="leaf-99" data-siglum="L1_0_0_12"><tspan x="0" y="0">L1_0_0_12</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 723.9 829.6 723.9 829.6 730.6 822.9 730.6 822.9 723.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 731.9)" id="leaf-100" data-siglum="Br4_0_0_14"><tspan x="0" y="0">Br4_0_0_14</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 730.7 829.6 730.7 829.6 737.4 822.9 737.4 822.9 730.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 738.7)" id="leaf-101" data-siglum="C14_1_GB5_15"><tspan x="0" y="0">C14_1_GB5_15</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 737.4 829.6 737.4 829.6 744.1 822.9 744.1 822.9 737.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 745.4)" id="leaf-102" data-siglum="EcX_0_0_15"><tspan x="0" y="0">EcX_0_0_15</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 744.2 829.6 744.2 829.6 750.9 822.9 750.9 822.9 744.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 752.2)" id="leaf-103" data-siglum="O_3_GB2_13"><tspan x="0" y="0">O_3_GB2_13</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 750.9 829.6 750.9 829.6 757.6 822.9 757.6 822.9 750.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 758.9)" id="leaf-104" data-siglum="Wf2_1_GB5_14"><tspan x="0" y="0">Wf2_1_GB5_14</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 757.6 829.6 757.6 829.6 764.4 822.9 764.4 822.9 757.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 765.6)" id="leaf-105" data-siglum="O2_1_GB3_13"><tspan x="0" y="0">O2_1_GB3_13</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 764.4 829.6 764.4 829.6 771.1 822.9 771.1 822.9 764.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 772.4)" id="leaf-106" data-siglum="Ph1_0_FR7_14"><tspan x="0" y="0">Ph1_0_FR7_14</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 771.1 829.6 771.1 829.6 777.8 822.9 777.8 822.9 771.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 779.1)" id="leaf-107" data-siglum="Mi_0_0_13"><tspan x="0" y="0">Mi_0_0_13</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 777.9 829.6 777.9 829.6 784.6 822.9 784.6 822.9 777.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 785.9)" id="leaf-108" data-siglum="Pn_0_0_13"><tspan x="0" y="0">Pn_0_0_13</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 784.6 829.6 784.6 829.6 791.3 822.9 791.3 822.9 784.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 792.6)" id="leaf-109" data-siglum="Du_0_0_12"><tspan x="0" y="0">Du_0_0_12</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 791.4 829.6 791.4 829.6 798.1 822.9 798.1 822.9 791.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 799.4)" id="leaf-110" data-siglum="L8_1_GB3_13"><tspan x="0" y="0">L8_1_GB3_13</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 798.1 829.6 798.1 829.6 804.8 822.9 804.8 822.9 798.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 806.1)" id="leaf-111" data-siglum="O10_1_GB3_14"><tspan x="0" y="0">O10_1_GB3_14</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 804.8 829.6 804.8 829.6 811.6 822.9 811.6 822.9 804.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 812.8)" id="leaf-112" data-siglum="C_1_GB6_12"><tspan x="0" y="0">C_1_GB6_12</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 811.6 829.6 811.6 829.6 818.3 822.9 818.3 822.9 811.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 819.6)" id="leaf-113" data-siglum="H_1_GB3_13"><tspan x="0" y="0">H_1_GB3_13</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 818.3 829.6 818.3 829.6 825 822.9 825 822.9 818.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 826.3)" id="leaf-114" data-siglum="Ed_1_GB3_13"><tspan x="0" y="0">Ed_1_GB3_13</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 825.1 829.6 825.1 829.6 831.8 822.9 831.8 822.9 825.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 833.1)" id="leaf-115" data-siglum="O9_0_0_13"><tspan x="0" y="0">O9_0_0_13</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 831.8 829.6 831.8 829.6 838.5 822.9 838.5 822.9 831.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 839.8)" id="leaf-116" data-siglum="Nh_1_GB3_13"><tspan x="0" y="0">Nh_1_GB3_13</tspan></text>
+    </g>
+    <polygon class="st1" points="822.9 838.6 829.6 838.6 829.6 845.3 822.9 845.3 822.9 838.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 846.6)" id="leaf-117" data-siglum="Lue_0_0_13"><tspan x="0" y="0">Lue_0_0_13</tspan></text>
+    </g>
+    <polygon class="st3" points="822.9 845.3 829.6 845.3 829.6 852 822.9 852 822.9 845.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 853.3)" id="leaf-118" data-siglum="Lz1_1_AT2_13"><tspan x="0" y="0">Lz1_1_AT2_13</tspan></text>
+    </g>
+    <polygon class="st3" points="822.9 852 829.6 852 829.6 858.7 822.9 858.7 822.9 852" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 860)" id="leaf-119" data-siglum="Ly_1_AT2_13"><tspan x="0" y="0">Ly_1_AT2_13</tspan></text>
+    </g>
+    <polygon class="st3" points="822.9 858.8 829.6 858.8 829.6 865.5 822.9 865.5 822.9 858.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 866.8)" id="leaf-120" data-siglum="M5_1_AT2_14"><tspan x="0" y="0">M5_1_AT2_14</tspan></text>
+    </g>
+    <polygon class="st3" points="822.9 865.5 829.6 865.5 829.6 872.2 822.9 872.2 822.9 865.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 873.5)" id="leaf-121" data-siglum="M4_0_0_14"><tspan x="0" y="0">M4_0_0_14</tspan></text>
+    </g>
+    <polygon class="st3" points="822.9 872.3 829.6 872.3 829.6 879 822.9 879 822.9 872.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 880.3)" id="leaf-122" data-siglum="W7_1_AT2_14"><tspan x="0" y="0">W7_1_AT2_14</tspan></text>
+    </g>
+    <polygon class="st3" points="822.9 879 829.6 879 829.6 885.7 822.9 885.7 822.9 879" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 887)" id="leaf-123" data-siglum="Av_2_FR3_14"><tspan x="0" y="0">Av_2_FR3_14</tspan></text>
+    </g>
+    <polygon class="st3" points="822.9 885.8 829.6 885.8 829.6 892.5 822.9 892.5 822.9 885.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 893.8)" id="leaf-124" data-siglum="P2_2_FR3_13"><tspan x="0" y="0">P2_2_FR3_13</tspan></text>
+    </g>
+    <polygon class="st3" points="822.9 892.5 829.6 892.5 829.6 899.2 822.9 899.2 822.9 892.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 900.5)" id="leaf-125" data-siglum="N_2_FR3_13"><tspan x="0" y="0">N_2_FR3_13</tspan></text>
+    </g>
+    <polygon class="st3" points="822.9 899.2 829.6 899.2 829.6 905.9 822.9 905.9 822.9 899.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 907.2)" id="leaf-126" data-siglum="UPenn"><tspan x="0" y="0">UPenn</tspan></text>
+    </g>
+    <polygon class="st3" points="822.9 906 829.6 906 829.6 912.7 822.9 912.7 822.9 906" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 914)" id="leaf-127" data-siglum="F1_2_FR3_14"><tspan x="0" y="0">F1_2_FR3_14</tspan></text>
+    </g>
+    <polygon class="st3" points="822.9 912.7 829.6 912.7 829.6 919.4 822.9 919.4 822.9 912.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 920.7)" id="leaf-128" data-siglum="M17_2_FR3_15"><tspan x="0" y="0">M17_2_FR3_15</tspan></text>
+    </g>
+    <polygon class="st3" points="822.9 919.5 829.6 919.5 829.6 926.2 822.9 926.2 822.9 919.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 927.5)" id="leaf-129" data-siglum="P8_2_FR3_13"><tspan x="0" y="0">P8_2_FR3_13</tspan></text>
+    </g>
+    <polygon class="st3" points="822.9 926.2 829.6 926.2 829.6 932.9 822.9 932.9 822.9 926.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 934.2)" id="leaf-130" data-siglum="St1_0_DE11_15"><tspan x="0" y="0">St1_0_DE11_15</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 933 829.6 933 829.6 939.7 822.9 939.7 822.9 933" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 941)" id="leaf-131" data-siglum="Va_0_0_13"><tspan x="0" y="0">Va_0_0_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 939.7 829.6 939.7 829.6 946.4 822.9 946.4 822.9 939.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 947.7)" id="leaf-132" data-siglum="P16_0_0_0"><tspan x="0" y="0">P16_0_0_0</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 946.4 829.6 946.4 829.6 953.1 822.9 953.1 822.9 946.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 954.4)" id="leaf-133" data-siglum="B6a_0_0_15"><tspan x="0" y="0">B6a_0_0_15</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 953.2 829.6 953.2 829.6 959.9 822.9 959.9 822.9 953.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 961.2)" id="leaf-134" data-siglum="Cl_0_0_13"><tspan x="0" y="0">Cl_0_0_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 959.9 829.6 959.9 829.6 966.6 822.9 966.6 822.9 959.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 967.9)" id="leaf-135" data-siglum="B3_0_0_14"><tspan x="0" y="0">B3_0_0_14</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 966.7 829.6 966.7 829.6 973.4 822.9 973.4 822.9 966.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 974.7)" id="leaf-136" data-siglum="V7_2_FR5_15"><tspan x="0" y="0">V7_2_FR5_15</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 973.4 829.6 973.4 829.6 980.1 822.9 980.1 822.9 973.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 981.4)" id="leaf-137" data-siglum="M2_2_AT3_13"><tspan x="0" y="0">M2_2_AT3_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 980.2 829.6 980.2 829.6 986.9 822.9 986.9 822.9 980.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 988.2)" id="leaf-138" data-siglum="Cm_2_FR5_13"><tspan x="0" y="0">Cm_2_FR5_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 986.9 829.6 986.9 829.6 993.6 822.9 993.6 822.9 986.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 994.9)" id="leaf-139" data-siglum="M11_0_0_15"><tspan x="0" y="0">M11_0_0_15</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 993.6 829.6 993.6 829.6 1000.3 822.9 1000.3 822.9 993.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1001.6)" id="leaf-140" data-siglum="Fb_1_DE1_13"><tspan x="0" y="0">Fb_1_DE1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1000.4 829.6 1000.4 829.6 1007.1 822.9 1007.1 822.9 1000.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1008.4)" id="leaf-141" data-siglum="K_1_FR1_13"><tspan x="0" y="0">K_1_FR1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1007.1 829.6 1007.1 829.6 1013.8 822.9 1013.8 822.9 1007.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1015.1)" id="leaf-142" data-siglum="Br_1_FR1_13"><tspan x="0" y="0">Br_1_FR1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1013.9 829.6 1013.9 829.6 1020.6 822.9 1020.6 822.9 1013.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1021.9)" id="leaf-143" data-siglum="C2_1_FR1_13"><tspan x="0" y="0">C2_1_FR1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1020.6 829.6 1020.6 829.6 1027.3 822.9 1027.3 822.9 1020.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1028.6)" id="leaf-144" data-siglum="P10_1_FR1_13"><tspan x="0" y="0">P10_1_FR1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1027.4 829.6 1027.4 829.6 1034.1 822.9 1034.1 822.9 1027.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1035.4)" id="leaf-145" data-siglum="E_1_FR1_13"><tspan x="0" y="0">E_1_FR1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1034.1 829.6 1034.1 829.6 1040.8 822.9 1040.8 822.9 1034.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1042.1)" id="leaf-146" data-siglum="V6_0_FR8_14"><tspan x="0" y="0">V6_0_FR8_14</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1040.8 829.6 1040.8 829.6 1047.5 822.9 1047.5 822.9 1040.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1048.8)" id="leaf-147" data-siglum="Ca_1_BE1_12"><tspan x="0" y="0">Ca_1_BE1_12</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1047.6 829.6 1047.6 829.6 1054.3 822.9 1054.3 822.9 1047.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1055.6)" id="leaf-148" data-siglum="P1_1_FR1_13"><tspan x="0" y="0">P1_1_FR1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1054.3 829.6 1054.3 829.6 1061 822.9 1061 822.9 1054.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1062.3)" id="leaf-149" data-siglum="Ch1_1_FR1_14"><tspan x="0" y="0">Ch1_1_FR1_14</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1061.1 829.6 1061.1 829.6 1067.8 822.9 1067.8 822.9 1061.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1069.1)" id="leaf-150" data-siglum="P9_0_0_13"><tspan x="0" y="0">P9_0_0_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1067.8 829.6 1067.8 829.6 1074.5 822.9 1074.5 822.9 1067.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1075.8)" id="leaf-151" data-siglum="T_0_0_13"><tspan x="0" y="0">T_0_0_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1074.6 829.6 1074.6 829.6 1081.3 822.9 1081.3 822.9 1074.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1082.6)" id="leaf-152" data-siglum="N1_1_FR1_13"><tspan x="0" y="0">N1_1_FR1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1081.3 829.6 1081.3 829.6 1088 822.9 1088 822.9 1081.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1089.3)" id="leaf-153" data-siglum="W_1_AT1_12"><tspan x="0" y="0">W_1_AT1_12</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1088 829.6 1088 829.6 1094.7 822.9 1094.7 822.9 1088" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1096)" id="leaf-154" data-siglum="C15_0_0_15"><tspan x="0" y="0">C15_0_0_15</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1094.8 829.6 1094.8 829.6 1101.5 822.9 1101.5 822.9 1094.8" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1102.8)" id="leaf-155" data-siglum="Nh2_0_0_14"><tspan x="0" y="0">Nh2_0_0_14</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1101.5 829.6 1101.5 829.6 1108.2 822.9 1108.2 822.9 1101.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1109.5)" id="leaf-156" data-siglum="E2_0_0_14"><tspan x="0" y="0">E2_0_0_14</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1108.3 829.6 1108.3 829.6 1115 822.9 1115 822.9 1108.3" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1116.3)" id="leaf-157" data-siglum="Bo_0_0_13"><tspan x="0" y="0">Bo_0_0_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1115 829.6 1115 829.6 1121.7 822.9 1121.7 822.9 1115" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1123)" id="leaf-158" data-siglum="V5_0_0_14"><tspan x="0" y="0">V5_0_0_14</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1121.7 829.6 1121.7 829.6 1128.5 822.9 1128.5 822.9 1121.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1129.7)" id="leaf-159" data-siglum="P3_0_0_13"><tspan x="0" y="0">P3_0_0_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1128.5 829.6 1128.5 829.6 1135.2 822.9 1135.2 822.9 1128.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1136.5)" id="leaf-160" data-siglum="Ln1_0_0_13"><tspan x="0" y="0">Ln1_0_0_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1135.2 829.6 1135.2 829.6 1141.9 822.9 1141.9 822.9 1135.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1143.2)" id="leaf-161" data-siglum="B9_0_0_14"><tspan x="0" y="0">B9_0_0_14</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1142 829.6 1142 829.6 1148.7 822.9 1148.7 822.9 1142" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1150)" id="leaf-162" data-siglum="C8_0_0_13"><tspan x="0" y="0">C8_0_0_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1148.7 829.6 1148.7 829.6 1155.4 822.9 1155.4 822.9 1148.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1156.7)" id="leaf-163" data-siglum="Ei_0_0_15"><tspan x="0" y="0">Ei_0_0_15</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1155.5 829.6 1155.5 829.6 1162.2 822.9 1162.2 822.9 1155.5" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1163.5)" id="leaf-164" data-siglum="X_0_0_14"><tspan x="0" y="0">X_0_0_14</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1162.2 829.6 1162.2 829.6 1168.9 822.9 1168.9 822.9 1162.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1170.2)" id="leaf-165" data-siglum="V3_0_FR7_13"><tspan x="0" y="0">V3_0_FR7_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1168.9 829.6 1168.9 829.6 1175.7 822.9 1175.7 822.9 1168.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1176.9)" id="leaf-166" data-siglum="W1_1_AT2_13"><tspan x="0" y="0">W1_1_AT2_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1175.7 829.6 1175.7 829.6 1182.4 822.9 1182.4 822.9 1175.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1183.7)" id="leaf-167" data-siglum="P13_0_FR7_14"><tspan x="0" y="0">P13_0_FR7_14</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1182.4 829.6 1182.4 829.6 1189.1 822.9 1189.1 822.9 1182.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1190.4)" id="leaf-168" data-siglum="Koe_1_BE1_12"><tspan x="0" y="0">Koe_1_BE1_12</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1189.2 829.6 1189.2 829.6 1195.9 822.9 1195.9 822.9 1189.2" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1197.2)" id="leaf-169" data-siglum="We_0_0_13"><tspan x="0" y="0">We_0_0_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1195.9 829.6 1195.9 829.6 1202.6 822.9 1202.6 822.9 1195.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1203.9)" id="leaf-170" data-siglum="V2_1_FR1_12"><tspan x="0" y="0">V2_1_FR1_12</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1202.7 829.6 1202.7 829.6 1209.4 822.9 1209.4 822.9 1202.7" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1210.7)" id="leaf-171" data-siglum="M3_1_DE1_13"><tspan x="0" y="0">M3_1_DE1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1209.4 829.6 1209.4 829.6 1216.1 822.9 1216.1 822.9 1209.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1217.4)" id="leaf-172" data-siglum="Wf1_0_0_13"><tspan x="0" y="0">Wf1_0_0_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1216.1 829.6 1216.1 829.6 1222.9 822.9 1222.9 822.9 1216.1" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1224.1)" id="leaf-173" data-siglum="Lz_1_AT1_13"><tspan x="0" y="0">Lz_1_AT1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1222.9 829.6 1222.9 829.6 1229.6 822.9 1229.6 822.9 1222.9" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1230.9)" id="leaf-174" data-siglum="M_1_Fr1_13"><tspan x="0" y="0">M_1_Fr1_13</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1229.6 829.6 1229.6 829.6 1236.3 822.9 1236.3 822.9 1229.6" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1237.6)" id="leaf-175" data-siglum="G_1_DE1_14"><tspan x="0" y="0">G_1_DE1_14</tspan></text>
+    </g>
+    <polygon class="st4" points="822.9 1236.4 829.6 1236.4 829.6 1243.1 822.9 1243.1 822.9 1236.4" />
+    <g class="st8">
+      <text class="st9 tree-leaf" transform="translate(830.9 1244.4)" id="leaf-176" data-siglum="P_0_0_13"><tspan x="0" y="0">P_0_0_13</tspan></text>
+    </g>
+  </g>
+  <g id="Ebene_2">
+    <g>
+      <path class="st18" d="M938.1,175.8v-11c0-.6,0-1.3,0-2.1s0-1.5.2-2.1h-.3c-.7,1.2-1.7,2.2-3.1,3s-3,1.2-5.1,1.2c-3.1,0-5.7-1.1-7.6-3.3s-2.9-5.5-2.9-9.9.4-5.3,1.3-7.3,2.1-3.5,3.7-4.5,3.5-1.5,5.6-1.5,3.7.4,5,1.2,2.3,1.8,3,2.9h.2l.6-3.7h3.1v37.2h-3.9ZM930.6,161.5c1.8,0,3.3-.3,4.4-1s1.9-1.7,2.4-3.1.8-3.1.8-5.1v-.8c0-3.3-.6-5.8-1.7-7.5s-3.1-2.6-5.9-2.6-4.2.9-5.4,2.8-1.8,4.3-1.8,7.5.6,5.6,1.8,7.3,3,2.6,5.4,2.6Z" />
+      <path class="st18" d="M971.5,138.6v25.7h-3.2l-.6-3.6h-.2c-.5.9-1.2,1.6-2.1,2.2s-1.8,1.1-2.8,1.4-2.2.5-3.4.5c-2,0-3.7-.3-5.1-1s-2.4-1.7-3.1-3-1-3.1-1-5.3v-16.8h3.9v16.5c0,2.1.5,3.7,1.5,4.8s2.4,1.6,4.4,1.6,3.4-.4,4.6-1.1,1.9-1.8,2.4-3.2.8-3.1.8-5.1v-13.5h3.9Z" />
+      <path class="st18" d="M989.3,138.2c3.1,0,5.3.7,6.8,2.1s2.2,3.6,2.2,6.6v17.5h-2.8l-.8-3.8h-.2c-.7.9-1.5,1.7-2.2,2.4s-1.7,1.1-2.7,1.4-2.3.5-3.8.5-2.9-.3-4.2-.8-2.2-1.4-2.9-2.5-1-2.5-1-4.2c0-2.6,1-4.5,3-5.9s5.1-2.1,9.3-2.2l4.4-.2v-1.6c0-2.2-.5-3.8-1.4-4.7s-2.3-1.3-4-1.3-2.6.2-3.8.6-2.4.9-3.5,1.4l-1.2-3c1.2-.6,2.5-1.1,4-1.5s3.1-.6,4.7-.6ZM994.5,151.6l-3.9.2c-3.2.1-5.5.6-6.8,1.6s-2,2.2-2,3.9.4,2.6,1.3,3.3,2.1,1.1,3.5,1.1c2.3,0,4.1-.6,5.6-1.9s2.2-3.2,2.2-5.7v-2.4Z" />
+      <path class="st18" d="M1014.7,161.6c.6,0,1.3,0,2-.2s1.2-.2,1.6-.4v3c-.5.2-1.1.4-1.9.5s-1.6.2-2.4.2c-1.4,0-2.6-.2-3.7-.7s-2-1.3-2.7-2.4-1-2.7-1-4.7v-15.2h-3.7v-1.9l3.7-1.5,1.5-5.6h2.3v6h7.5v3h-7.5v15.1c0,1.6.4,2.8,1.1,3.6s1.7,1.2,3,1.2Z" />
+      <path class="st18" d="M1035.2,138.1c.5,0,1.1,0,1.6,0s1.1.1,1.5.2l-.5,3.6c-.4-.1-.9-.2-1.4-.3s-1,0-1.5,0c-1,0-2,.2-2.9.6s-1.7,1-2.4,1.8-1.2,1.7-1.6,2.8-.6,2.3-.6,3.6v13.8h-3.9v-25.7h3.2l.4,4.7h.2c.5-1,1.2-1.8,1.9-2.6s1.6-1.4,2.6-1.9,2.1-.7,3.3-.7Z" />
+      <path class="st18" d="M1053,138.1c2.2,0,4.1.5,5.6,1.5s2.8,2.3,3.6,4.1,1.2,3.8,1.2,6.1v2.4h-17.7c0,3,.8,5.3,2.2,6.9s3.5,2.4,6.1,2.4,3.1-.1,4.3-.4,2.5-.7,3.9-1.3v3.4c-1.3.6-2.6,1-3.9,1.3s-2.8.4-4.5.4c-2.5,0-4.6-.5-6.5-1.5s-3.3-2.5-4.3-4.4-1.5-4.3-1.5-7.2.5-5.2,1.4-7.2,2.2-3.6,3.9-4.7,3.7-1.6,6-1.6ZM1052.9,141.3c-2.1,0-3.7.7-5,2s-2,3.3-2.2,5.7h13.6c0-1.5-.3-2.9-.7-4s-1.2-2.1-2.1-2.7-2.1-1-3.6-1Z" />
+      <path class="st18" d="M1081.5,141.6h-6.4v22.6h-3.9v-22.6h-4.5v-1.9l4.5-1.3v-1.7c0-2.2.3-3.9,1-5.3s1.6-2.3,2.8-3,2.7-1,4.5-1,1.9,0,2.7.3,1.5.4,2.2.6l-1,3.1c-.5-.2-1.1-.3-1.8-.5s-1.3-.2-2-.2c-1.5,0-2.6.5-3.3,1.4s-1.1,2.5-1.1,4.5v1.9h6.4v3Z" />
+      <path class="st18" d="M1108.4,151.4c0,2.1-.3,4-.8,5.6s-1.3,3.1-2.4,4.2-2.3,2-3.7,2.6-3.1.9-5,.9-3.3-.3-4.7-.9-2.7-1.5-3.7-2.6-1.8-2.5-2.4-4.2-.9-3.5-.9-5.6.5-5.2,1.4-7.2,2.3-3.5,4.1-4.5,3.9-1.6,6.3-1.6,4.4.5,6.2,1.6,3.1,2.6,4.1,4.5,1.5,4.4,1.5,7.2ZM1088.8,151.4c0,2.1.3,3.9.8,5.4s1.4,2.7,2.5,3.5,2.6,1.2,4.4,1.2,3.2-.4,4.4-1.2,2-2,2.5-3.5.8-3.3.8-5.4-.3-3.8-.8-5.3-1.4-2.6-2.5-3.5-2.6-1.2-4.4-1.2c-2.7,0-4.6.9-5.9,2.6s-1.9,4.2-1.9,7.3Z" />
+      <path class="st18" d="M1117.1,129c.6,0,1.2.2,1.7.6s.7,1.1.7,1.9-.2,1.5-.7,1.9-1,.6-1.7.6-1.2-.2-1.7-.6-.7-1.1-.7-1.9.2-1.5.7-1.9,1-.6,1.7-.6ZM1119,138.6v25.7h-3.9v-25.7h3.9Z" />
+      <path class="st18" d="M1131.1,164.3h-3.9v-36.5h3.9v36.5Z" />
+    </g>
+    <g>
+      <path class="st6" d="M931.2,454.7c-2.3,0-4.4-.5-6.1-1.4s-3.1-2.4-4.1-4.4-1.5-4.4-1.5-7.4.5-5.7,1.6-7.6,2.5-3.4,4.3-4.4,3.9-1.4,6.2-1.4,2.5.1,3.7.4,2.2.6,2.9,1l-1.2,3.3c-.8-.3-1.7-.6-2.7-.8s-2-.4-2.9-.4c-1.8,0-3.3.4-4.4,1.1s-2.1,1.9-2.6,3.4-.9,3.3-.9,5.5.3,3.9.9,5.3,1.4,2.6,2.6,3.4,2.6,1.2,4.3,1.2,2.6-.1,3.7-.4,2.1-.6,3-1v3.5c-.9.4-1.8.8-2.9,1s-2.3.4-3.8.4Z" />
+      <path class="st6" d="M945.9,419c.6,0,1.2.2,1.7.6s.7,1.1.7,1.9-.2,1.5-.7,1.9-1,.6-1.7.6-1.2-.2-1.7-.6-.7-1.1-.7-1.9.2-1.5.7-1.9,1-.6,1.7-.6ZM947.8,428.6v25.7h-3.9v-25.7h3.9Z" />
+      <path class="st6" d="M967.7,428.1c.5,0,1.1,0,1.6,0s1.1.1,1.5.2l-.5,3.6c-.4-.1-.9-.2-1.4-.3s-1,0-1.5,0c-1,0-2,.2-2.9.6s-1.7,1-2.4,1.8-1.2,1.7-1.6,2.8-.6,2.3-.6,3.6v13.8h-3.9v-25.7h3.2l.4,4.7h.2c.5-1,1.2-1.8,1.9-2.6s1.6-1.4,2.6-1.9,2.1-.7,3.3-.7Z" />
+      <path class="st6" d="M985.9,454.7c-2.3,0-4.4-.5-6.1-1.4s-3.1-2.4-4.1-4.4-1.5-4.4-1.5-7.4.5-5.7,1.6-7.6,2.5-3.4,4.3-4.4,3.9-1.4,6.2-1.4,2.5.1,3.7.4,2.2.6,2.9,1l-1.2,3.3c-.8-.3-1.7-.6-2.7-.8s-2-.4-2.9-.4c-1.8,0-3.3.4-4.4,1.1s-2.1,1.9-2.6,3.4-.9,3.3-.9,5.5.3,3.9.9,5.3,1.4,2.6,2.6,3.4,2.6,1.2,4.3,1.2,2.6-.1,3.7-.4,2.1-.6,3-1v3.5c-.9.4-1.8.8-2.9,1s-2.3.4-3.8.4Z" />
+      <path class="st6" d="M1002.5,454.3h-3.9v-36.5h3.9v36.5Z" />
+      <path class="st6" d="M1020.6,428.1c2.2,0,4.1.5,5.6,1.5s2.8,2.3,3.6,4.1,1.2,3.8,1.2,6.1v2.4h-17.7c0,3,.8,5.3,2.2,6.9s3.5,2.4,6.1,2.4,3.1-.1,4.3-.4,2.5-.7,3.9-1.3v3.4c-1.3.6-2.6,1-3.9,1.3s-2.8.4-4.5.4c-2.5,0-4.6-.5-6.5-1.5s-3.3-2.5-4.3-4.4-1.5-4.3-1.5-7.2.5-5.2,1.4-7.2,2.2-3.6,3.9-4.7,3.7-1.6,6-1.6ZM1020.6,431.3c-2.1,0-3.7.7-5,2s-2,3.3-2.2,5.7h13.6c0-1.5-.3-2.9-.7-4s-1.2-2.1-2.1-2.7-2.1-1-3.6-1Z" />
+    </g>
+    <g>
+      <path class="st7" d="M930,678.2c-3.2,0-5.8-1.1-7.7-3.3s-2.8-5.5-2.8-9.9,1-7.8,2.9-10,4.5-3.4,7.7-3.4,2.5.2,3.6.5,1.9.8,2.6,1.4,1.4,1.3,1.9,2.1h.3c0-.5-.1-1.1-.2-2s0-1.5,0-2.1v-10.3h3.9v36.5h-3.1l-.6-3.7h-.2c-.5.8-1.1,1.5-1.8,2.1s-1.6,1.1-2.6,1.5-2.2.6-3.6.6ZM930.6,675c2.8,0,4.7-.8,5.8-2.3s1.7-3.9,1.7-7v-.7c0-3.3-.5-5.8-1.6-7.5s-3.1-2.6-5.9-2.6-4.2.9-5.4,2.8-1.8,4.3-1.8,7.5.6,5.6,1.8,7.3,3,2.6,5.4,2.6Z" />
+      <path class="st7" d="M952.3,642.5c.6,0,1.2.2,1.7.6s.7,1.1.7,1.9-.2,1.5-.7,1.9-1,.6-1.7.6-1.2-.2-1.7-.6-.7-1.1-.7-1.9.2-1.5.7-1.9,1-.6,1.7-.6ZM954.2,652.1v25.7h-3.9v-25.7h3.9Z" />
+      <path class="st7" d="M972,651.7c3.1,0,5.3.7,6.8,2.1s2.2,3.6,2.2,6.6v17.5h-2.8l-.8-3.8h-.2c-.7.9-1.5,1.7-2.2,2.4s-1.7,1.1-2.7,1.4-2.3.5-3.8.5-2.9-.3-4.2-.8-2.2-1.4-2.9-2.5-1-2.5-1-4.2c0-2.6,1-4.5,3-5.9s5.1-2.1,9.3-2.2l4.4-.2v-1.6c0-2.2-.5-3.8-1.4-4.7s-2.3-1.3-4-1.3-2.6.2-3.8.6-2.4.9-3.5,1.4l-1.2-3c1.2-.6,2.5-1.1,4-1.5s3.1-.6,4.7-.6ZM977.2,665.1l-3.9.2c-3.2.1-5.5.6-6.8,1.6s-2,2.2-2,3.9.4,2.6,1.3,3.3,2.1,1.1,3.5,1.1c2.3,0,4.1-.6,5.6-1.9s2.2-3.2,2.2-5.7v-2.4Z" />
+      <path class="st7" d="M1016.9,651.6c2.8,0,5,.7,6.4,2.2s2.2,3.8,2.2,7.1v16.8h-3.8v-16.6c0-2.1-.4-3.6-1.3-4.7s-2.2-1.6-4-1.6-4.3.7-5.4,2.2-1.7,3.6-1.7,6.4v14.4h-3.9v-16.6c0-1.4-.2-2.5-.6-3.5s-1-1.6-1.8-2.1-1.8-.7-3-.7c-1.7,0-3.1.4-4.1,1.1s-1.8,1.7-2.2,3.1-.7,3.1-.7,5.1v13.6h-3.9v-25.7h3.1l.6,3.6h.2c.5-.9,1.2-1.6,1.9-2.2s1.7-1.1,2.6-1.4,2-.5,3.1-.5c2,0,3.6.4,4.9,1.1s2.3,1.8,2.9,3.3h.2c.8-1.5,2-2.6,3.5-3.3s3.1-1.1,4.8-1.1Z" />
+      <path class="st7" d="M1055.6,664.9c0,2.1-.3,4-.8,5.6s-1.3,3.1-2.4,4.2-2.3,2-3.7,2.6-3.1.9-5,.9-3.3-.3-4.7-.9-2.7-1.5-3.7-2.6-1.8-2.5-2.4-4.2-.9-3.5-.9-5.6.5-5.2,1.4-7.2,2.3-3.5,4.1-4.5,3.9-1.6,6.3-1.6,4.4.5,6.2,1.6,3.1,2.6,4.1,4.5,1.5,4.4,1.5,7.2ZM1036.1,664.9c0,2.1.3,3.9.8,5.4s1.4,2.7,2.5,3.5,2.6,1.2,4.4,1.2,3.2-.4,4.4-1.2,2-2,2.5-3.5.8-3.3.8-5.4-.3-3.8-.8-5.3-1.4-2.6-2.5-3.5-2.6-1.2-4.4-1.2c-2.7,0-4.6.9-5.9,2.6s-1.9,4.2-1.9,7.3Z" />
+      <path class="st7" d="M1074.5,651.6c3,0,5.4.7,6.9,2.2s2.3,3.9,2.3,7.2v16.7h-3.8v-16.5c0-2.1-.5-3.7-1.5-4.8s-2.5-1.6-4.5-1.6-4.8.8-6,2.4-1.7,3.9-1.7,7v13.5h-3.9v-25.7h3.1l.6,3.7h.2c.5-.9,1.2-1.7,2.1-2.3s1.8-1.1,2.8-1.4,2.1-.5,3.3-.5Z" />
+      <path class="st7" d="M1100.9,678.2c-3.2,0-5.8-1.1-7.7-3.3s-2.8-5.5-2.8-9.9,1-7.8,2.9-10,4.5-3.4,7.7-3.4,2.5.2,3.6.5,1.9.8,2.6,1.4,1.4,1.3,1.9,2.1h.3c0-.5-.1-1.1-.2-2s0-1.5,0-2.1v-10.3h3.9v36.5h-3.1l-.6-3.7h-.2c-.5.8-1.1,1.5-1.8,2.1s-1.6,1.1-2.6,1.5-2.2.6-3.6.6ZM1101.6,675c2.8,0,4.7-.8,5.8-2.3s1.7-3.9,1.7-7v-.7c0-3.3-.5-5.8-1.6-7.5s-3.1-2.6-5.9-2.6-4.2.9-5.4,2.8-1.8,4.3-1.8,7.5.6,5.6,1.8,7.3,3,2.6,5.4,2.6Z" />
+    </g>
+    <g>
+      <path class="st0" d="M932.3,760.3h-6.4v22.6h-3.9v-22.6h-4.5v-1.9l4.5-1.3v-1.7c0-2.2.3-3.9,1-5.3s1.6-2.3,2.8-3,2.7-1,4.5-1,1.9,0,2.7.3,1.5.4,2.2.6l-1,3.1c-.5-.2-1.1-.3-1.8-.5s-1.3-.2-2-.2c-1.5,0-2.6.5-3.3,1.4s-1.1,2.5-1.1,4.5v1.9h6.4v3Z" />
+      <path class="st0" d="M959.2,770.1c0,2.1-.3,4-.8,5.6s-1.3,3.1-2.4,4.2-2.3,2-3.7,2.6-3.1.9-5,.9-3.3-.3-4.7-.9-2.7-1.5-3.7-2.6-1.8-2.5-2.4-4.2-.9-3.5-.9-5.6.5-5.2,1.4-7.2,2.3-3.5,4.1-4.5,3.9-1.6,6.3-1.6,4.4.5,6.2,1.6,3.1,2.6,4.1,4.5,1.5,4.4,1.5,7.2ZM939.6,770.1c0,2.1.3,3.9.8,5.4s1.4,2.7,2.5,3.5,2.6,1.2,4.4,1.2,3.2-.4,4.4-1.2,2-2,2.5-3.5.8-3.3.8-5.4-.3-3.8-.8-5.3-1.4-2.6-2.5-3.5-2.6-1.2-4.4-1.2c-2.7,0-4.6.9-5.9,2.6s-1.9,4.2-1.9,7.3Z" />
+      <path class="st0" d="M987.1,757.3v25.7h-3.2l-.6-3.6h-.2c-.5.9-1.2,1.6-2.1,2.2s-1.8,1.1-2.8,1.4-2.2.5-3.4.5c-2,0-3.7-.3-5.1-1s-2.4-1.7-3.1-3-1-3.1-1-5.3v-16.8h3.9v16.5c0,2.1.5,3.7,1.5,4.8s2.4,1.6,4.4,1.6,3.4-.4,4.6-1.1,1.9-1.8,2.4-3.2.8-3.1.8-5.1v-13.5h3.9Z" />
+      <path class="st0" d="M1007,756.8c.5,0,1.1,0,1.6,0s1.1.1,1.5.2l-.5,3.6c-.4-.1-.9-.2-1.4-.3s-1,0-1.5,0c-1,0-2,.2-2.9.6s-1.7,1-2.4,1.8-1.2,1.7-1.6,2.8-.6,2.3-.6,3.6v13.8h-3.9v-25.7h3.2l.4,4.7h.2c.5-1,1.2-1.8,1.9-2.6s1.6-1.4,2.6-1.9,2.1-.7,3.3-.7Z" />
+      <path class="st0" d="M1037.7,783.4c-2.3,0-4.4-.5-6.1-1.4s-3.1-2.4-4.1-4.4-1.5-4.4-1.5-7.4.5-5.7,1.6-7.6,2.5-3.4,4.3-4.4,3.9-1.4,6.2-1.4,2.5.1,3.7.4,2.2.6,2.9,1l-1.2,3.3c-.8-.3-1.7-.6-2.7-.8s-2-.4-2.9-.4c-1.8,0-3.3.4-4.4,1.1s-2.1,1.9-2.6,3.4-.9,3.3-.9,5.5.3,3.9.9,5.3,1.4,2.6,2.6,3.4,2.6,1.2,4.3,1.2,2.6-.1,3.7-.4,2.1-.6,3-1v3.5c-.9.4-1.8.8-2.9,1s-2.3.4-3.8.4Z" />
+      <path class="st0" d="M1052.4,747.7c.6,0,1.2.2,1.7.6s.7,1.1.7,1.9-.2,1.5-.7,1.9-1,.6-1.7.6-1.2-.2-1.7-.6-.7-1.1-.7-1.9.2-1.5.7-1.9,1-.6,1.7-.6ZM1054.3,757.3v25.7h-3.9v-25.7h3.9Z" />
+      <path class="st0" d="M1074.2,756.8c.5,0,1.1,0,1.6,0s1.1.1,1.5.2l-.5,3.6c-.4-.1-.9-.2-1.4-.3s-1,0-1.5,0c-1,0-2,.2-2.9.6s-1.7,1-2.4,1.8-1.2,1.7-1.6,2.8-.6,2.3-.6,3.6v13.8h-3.9v-25.7h3.2l.4,4.7h.2c.5-1,1.2-1.8,1.9-2.6s1.6-1.4,2.6-1.9,2.1-.7,3.3-.7Z" />
+      <path class="st0" d="M1092.5,783.4c-2.3,0-4.4-.5-6.1-1.4s-3.1-2.4-4.1-4.4-1.5-4.4-1.5-7.4.5-5.7,1.6-7.6,2.5-3.4,4.3-4.4,3.9-1.4,6.2-1.4,2.5.1,3.7.4,2.2.6,2.9,1l-1.2,3.3c-.8-.3-1.7-.6-2.7-.8s-2-.4-2.9-.4c-1.8,0-3.3.4-4.4,1.1s-2.1,1.9-2.6,3.4-.9,3.3-.9,5.5.3,3.9.9,5.3,1.4,2.6,2.6,3.4,2.6,1.2,4.3,1.2,2.6-.1,3.7-.4,2.1-.6,3-1v3.5c-.9.4-1.8.8-2.9,1s-2.3.4-3.8.4Z" />
+      <path class="st0" d="M1109.1,783h-3.9v-36.5h3.9v36.5Z" />
+      <path class="st0" d="M1127.2,756.8c2.2,0,4.1.5,5.6,1.5s2.8,2.3,3.6,4.1,1.2,3.8,1.2,6.1v2.4h-17.7c0,3,.8,5.3,2.2,6.9s3.5,2.4,6.1,2.4,3.1-.1,4.3-.4,2.5-.7,3.9-1.3v3.4c-1.3.6-2.6,1-3.9,1.3s-2.8.4-4.5.4c-2.5,0-4.6-.5-6.5-1.5s-3.3-2.5-4.3-4.4-1.5-4.3-1.5-7.2.5-5.2,1.4-7.2,2.2-3.6,3.9-4.7,3.7-1.6,6-1.6ZM1127.1,760c-2.1,0-3.7.7-5,2s-2,3.3-2.2,5.7h13.6c0-1.5-.3-2.9-.7-4s-1.2-2.1-2.1-2.7-2.1-1-3.6-1Z" />
+      <path class="st0" d="M1160.9,775.9c0,1.6-.4,3-1.2,4.1s-2,2-3.5,2.5-3.3.8-5.4.8-3.4-.1-4.7-.4-2.5-.7-3.4-1.2v-3.6c1,.5,2.3,1,3.8,1.4s2.9.6,4.5.6c2.2,0,3.8-.4,4.8-1.1s1.5-1.7,1.5-2.9-.2-1.3-.6-1.9-1.1-1.1-2-1.6-2.2-1.1-3.9-1.7c-1.6-.6-3.1-1.2-4.3-1.9s-2.1-1.4-2.8-2.3-1-2-1-3.5c0-2.2.9-3.8,2.6-5s4.1-1.7,6.9-1.7,3,.2,4.3.5,2.6.7,3.8,1.2l-1.3,3.1c-1.1-.5-2.2-.8-3.4-1.1s-2.4-.5-3.7-.5c-1.8,0-3.2.3-4.1.9s-1.4,1.4-1.4,2.4.2,1.5.7,2,1.2,1,2.1,1.5,2.3,1,3.9,1.6c1.6.6,3,1.2,4.2,1.8s2.1,1.4,2.7,2.3.9,2.1.9,3.5Z" />
+    </g>
+    <g>
+      <path class="st10" d="M937.5,901.8c0,1.6-.4,3-1.2,4.1s-2,2-3.5,2.5-3.3.8-5.4.8-3.4-.1-4.7-.4-2.5-.7-3.4-1.2v-3.6c1,.5,2.3,1,3.8,1.4s2.9.6,4.5.6c2.2,0,3.8-.4,4.8-1.1s1.5-1.7,1.5-2.9-.2-1.3-.6-1.9-1.1-1.1-2-1.6-2.2-1.1-3.9-1.7c-1.6-.6-3.1-1.2-4.3-1.9s-2.1-1.4-2.8-2.3-1-2-1-3.5c0-2.2.9-3.8,2.6-5s4.1-1.7,6.9-1.7,3,.2,4.3.5,2.6.7,3.8,1.2l-1.3,3.1c-1.1-.5-2.2-.8-3.4-1.1s-2.4-.5-3.7-.5c-1.8,0-3.2.3-4.1.9s-1.4,1.4-1.4,2.4.2,1.5.7,2,1.2,1,2.1,1.5,2.3,1,3.9,1.6c1.6.6,3,1.2,4.2,1.8s2.1,1.4,2.7,2.3.9,2.1.9,3.5Z" />
+      <path class="st10" d="M961,920.4v-11c0-.6,0-1.3,0-2.1s0-1.5.2-2.1h-.3c-.7,1.2-1.7,2.2-3.1,3s-3,1.2-5.1,1.2c-3.1,0-5.7-1.1-7.6-3.3s-2.9-5.5-2.9-9.9.4-5.3,1.3-7.3,2.1-3.5,3.7-4.5,3.5-1.5,5.6-1.5,3.7.4,5,1.2,2.3,1.8,3,2.9h.2l.6-3.7h3.1v37.2h-3.9ZM953.5,906.1c1.8,0,3.3-.3,4.4-1s1.9-1.7,2.4-3.1.8-3.1.8-5.1v-.8c0-3.3-.6-5.8-1.7-7.5s-3.1-2.6-5.9-2.6-4.2.9-5.4,2.8-1.8,4.3-1.8,7.5.6,5.6,1.8,7.3,3,2.6,5.4,2.6Z" />
+      <path class="st10" d="M994.4,883.2v25.7h-3.2l-.6-3.6h-.2c-.5.9-1.2,1.6-2.1,2.2s-1.8,1.1-2.8,1.4-2.2.5-3.4.5c-2,0-3.7-.3-5.1-1s-2.4-1.7-3.1-3-1-3.1-1-5.3v-16.8h3.9v16.5c0,2.1.5,3.7,1.5,4.8s2.4,1.6,4.4,1.6,3.4-.4,4.6-1.1,1.9-1.8,2.4-3.2.8-3.1.8-5.1v-13.5h3.9Z" />
+      <path class="st10" d="M1012.2,882.8c3.1,0,5.3.7,6.8,2.1s2.2,3.6,2.2,6.6v17.5h-2.8l-.8-3.8h-.2c-.7.9-1.5,1.7-2.2,2.4s-1.7,1.1-2.7,1.4-2.3.5-3.8.5-2.9-.3-4.2-.8-2.2-1.4-2.9-2.5-1-2.5-1-4.2c0-2.6,1-4.5,3-5.9s5.1-2.1,9.3-2.2l4.4-.2v-1.6c0-2.2-.5-3.8-1.4-4.7s-2.3-1.3-4-1.3-2.6.2-3.8.6-2.4.9-3.5,1.4l-1.2-3c1.2-.6,2.5-1.1,4-1.5s3.1-.6,4.7-.6ZM1017.4,896.2l-3.9.2c-3.2.1-5.5.6-6.8,1.6s-2,2.2-2,3.9.4,2.6,1.3,3.3,2.1,1.1,3.5,1.1c2.3,0,4.1-.6,5.6-1.9s2.2-3.2,2.2-5.7v-2.4Z" />
+      <path class="st10" d="M1040.9,882.7c.5,0,1.1,0,1.6,0s1.1.1,1.5.2l-.5,3.6c-.4-.1-.9-.2-1.4-.3s-1,0-1.5,0c-1,0-2,.2-2.9.6s-1.7,1-2.4,1.8-1.2,1.7-1.6,2.8-.6,2.3-.6,3.6v13.8h-3.9v-25.7h3.2l.4,4.7h.2c.5-1,1.2-1.8,1.9-2.6s1.6-1.4,2.6-1.9,2.1-.7,3.3-.7Z" />
+      <path class="st10" d="M1058.8,882.7c2.2,0,4.1.5,5.6,1.5s2.8,2.3,3.6,4.1,1.2,3.8,1.2,6.1v2.4h-17.7c0,3,.8,5.3,2.2,6.9s3.5,2.4,6.1,2.4,3.1-.1,4.3-.4,2.5-.7,3.9-1.3v3.4c-1.3.6-2.6,1-3.9,1.3s-2.8.4-4.5.4c-2.5,0-4.6-.5-6.5-1.5s-3.3-2.5-4.3-4.4-1.5-4.3-1.5-7.2.5-5.2,1.4-7.2,2.2-3.6,3.9-4.7,3.7-1.6,6-1.6ZM1058.7,885.9c-2.1,0-3.7.7-5,2s-2,3.3-2.2,5.7h13.6c0-1.5-.3-2.9-.7-4s-1.2-2.1-2.1-2.7-2.1-1-3.6-1Z" />
+    </g>
+    <g>
+      <path class="st18" d="M938.1,1092.1v-11c0-.6,0-1.3,0-2.1s0-1.5.2-2.1h-.3c-.7,1.2-1.7,2.2-3.1,3s-3,1.2-5.1,1.2c-3.1,0-5.7-1.1-7.6-3.3s-2.9-5.5-2.9-9.9.4-5.3,1.3-7.3,2.1-3.5,3.7-4.5,3.5-1.5,5.6-1.5,3.7.4,5,1.2,2.3,1.8,3,2.9h.2l.6-3.7h3.1v37.2h-3.9ZM930.6,1077.9c1.8,0,3.3-.3,4.4-1s1.9-1.7,2.4-3.1.8-3.1.8-5.1v-.8c0-3.3-.6-5.8-1.7-7.5s-3.1-2.6-5.9-2.6-4.2.9-5.4,2.8-1.8,4.3-1.8,7.5.6,5.6,1.8,7.3,3,2.6,5.4,2.6Z" />
+      <path class="st18" d="M971.5,1054.9v25.7h-3.2l-.6-3.6h-.2c-.5.9-1.2,1.6-2.1,2.2s-1.8,1.1-2.8,1.4-2.2.5-3.4.5c-2,0-3.7-.3-5.1-1s-2.4-1.7-3.1-3-1-3.1-1-5.3v-16.8h3.9v16.5c0,2.1.5,3.7,1.5,4.8s2.4,1.6,4.4,1.6,3.4-.4,4.6-1.1,1.9-1.8,2.4-3.2.8-3.1.8-5.1v-13.5h3.9Z" />
+      <path class="st18" d="M989.3,1054.5c3.1,0,5.3.7,6.8,2.1s2.2,3.6,2.2,6.6v17.5h-2.8l-.8-3.8h-.2c-.7.9-1.5,1.7-2.2,2.4s-1.7,1.1-2.7,1.4-2.3.5-3.8.5-2.9-.3-4.2-.8-2.2-1.4-2.9-2.5-1-2.5-1-4.2c0-2.6,1-4.5,3-5.9s5.1-2.1,9.3-2.2l4.4-.2v-1.6c0-2.2-.5-3.8-1.4-4.7s-2.3-1.3-4-1.3-2.6.2-3.8.6-2.4.9-3.5,1.4l-1.2-3c1.2-.6,2.5-1.1,4-1.5s3.1-.6,4.7-.6ZM994.5,1068l-3.9.2c-3.2.1-5.5.6-6.8,1.6s-2,2.2-2,3.9.4,2.6,1.3,3.3,2.1,1.1,3.5,1.1c2.3,0,4.1-.6,5.6-1.9s2.2-3.2,2.2-5.7v-2.4Z" />
+      <path class="st18" d="M1014.7,1077.9c.6,0,1.3,0,2-.2s1.2-.2,1.6-.4v3c-.5.2-1.1.4-1.9.5s-1.6.2-2.4.2c-1.4,0-2.6-.2-3.7-.7s-2-1.3-2.7-2.4-1-2.7-1-4.7v-15.2h-3.7v-1.9l3.7-1.5,1.5-5.6h2.3v6h7.5v3h-7.5v15.1c0,1.6.4,2.8,1.1,3.6s1.7,1.2,3,1.2Z" />
+      <path class="st18" d="M1035.2,1054.5c.5,0,1.1,0,1.6,0s1.1.1,1.5.2l-.5,3.6c-.4-.1-.9-.2-1.4-.3s-1,0-1.5,0c-1,0-2,.2-2.9.6s-1.7,1-2.4,1.8-1.2,1.7-1.6,2.8-.6,2.3-.6,3.6v13.8h-3.9v-25.7h3.2l.4,4.7h.2c.5-1,1.2-1.8,1.9-2.6s1.6-1.4,2.6-1.9,2.1-.7,3.3-.7Z" />
+      <path class="st18" d="M1053,1054.5c2.2,0,4.1.5,5.6,1.5s2.8,2.3,3.6,4.1,1.2,3.8,1.2,6.1v2.4h-17.7c0,3,.8,5.3,2.2,6.9s3.5,2.4,6.1,2.4,3.1-.1,4.3-.4,2.5-.7,3.9-1.3v3.4c-1.3.6-2.6,1-3.9,1.3s-2.8.4-4.5.4c-2.5,0-4.6-.5-6.5-1.5s-3.3-2.5-4.3-4.4-1.5-4.3-1.5-7.2.5-5.2,1.4-7.2,2.2-3.6,3.9-4.7,3.7-1.6,6-1.6ZM1052.9,1057.7c-2.1,0-3.7.7-5,2s-2,3.3-2.2,5.7h13.6c0-1.5-.3-2.9-.7-4s-1.2-2.1-2.1-2.7-2.1-1-3.6-1Z" />
+      <path class="st18" d="M1081.5,1058h-6.4v22.6h-3.9v-22.6h-4.5v-1.9l4.5-1.3v-1.7c0-2.2.3-3.9,1-5.3s1.6-2.3,2.8-3,2.7-1,4.5-1,1.9,0,2.7.3,1.5.4,2.2.6l-1,3.1c-.5-.2-1.1-.3-1.8-.5s-1.3-.2-2-.2c-1.5,0-2.6.5-3.3,1.4s-1.1,2.5-1.1,4.5v1.9h6.4v3Z" />
+      <path class="st18" d="M1108.4,1067.7c0,2.1-.3,4-.8,5.6s-1.3,3.1-2.4,4.2-2.3,2-3.7,2.6-3.1.9-5,.9-3.3-.3-4.7-.9-2.7-1.5-3.7-2.6-1.8-2.5-2.4-4.2-.9-3.5-.9-5.6.5-5.2,1.4-7.2,2.3-3.5,4.1-4.5,3.9-1.6,6.3-1.6,4.4.5,6.2,1.6,3.1,2.6,4.1,4.5,1.5,4.4,1.5,7.2ZM1088.8,1067.7c0,2.1.3,3.9.8,5.4s1.4,2.7,2.5,3.5,2.6,1.2,4.4,1.2,3.2-.4,4.4-1.2,2-2,2.5-3.5.8-3.3.8-5.4-.3-3.8-.8-5.3-1.4-2.6-2.5-3.5-2.6-1.2-4.4-1.2c-2.7,0-4.6.9-5.9,2.6s-1.9,4.2-1.9,7.3Z" />
+      <path class="st18" d="M1117.1,1045.3c.6,0,1.2.2,1.7.6s.7,1.1.7,1.9-.2,1.5-.7,1.9-1,.6-1.7.6-1.2-.2-1.7-.6-.7-1.1-.7-1.9.2-1.5.7-1.9,1-.6,1.7-.6ZM1119,1054.9v25.7h-3.9v-25.7h3.9Z" />
+      <path class="st18" d="M1131.1,1080.6h-3.9v-36.5h3.9v36.5Z" />
+    </g>
+  </g>
+</svg></div><p class="contrast-note">Gold bands and bright tip markers identify every match. Select a siglum below for a close-up. <a href="index.html">Original view ↗</a></p><div class="match-panel"><div class="match-header"><span id="match-title">Matching sigla</span><button class="btn" id="clear-tree">Clear selection</button></div><div id="tree-matches"></div></div><div class="footer">Hover a group to preview · Click to keep highlighted · Click a siglum to locate it</div></section><aside class="right"><div class="eyebrow">Manuscript inspector</div><div id="details"></div><p class="note">Reconstructed from “Venice 02.11.26-2.svg”. Dotted arrows indicate an indirect relationship or intermediate witness. Ring colors without a definition in the supplied legend are marked unclassified.</p><a href="original.svg" download class="detail">↓ Download original diagram</a></aside></main><div id="tooltip" role="tooltip"></div><script>
+const versions=['#db47b6','#ff873b'];const types={short:['Short text','#7ac855'],interpolated:['Interpolated text(s)','#e9d250'],unclassified:['Unclassified ring','#e5a83c']};
+const rows=[["AT2", 1102, 210, 1, "short"], ["AT1", 1102, 337, 1, "short"], ["PL1", 768, 325, 1, "short"], ["BE1", 961, 413, 1, "short"], ["DE2", 822, 464, 1, "short"], ["FR2", 1088, 464, 1, "short"], ["FR1", 961, 528, 1, "short"], ["DE1", 789, 540, 1, "short"], ["DE4", 566, 540, 1, "interpolated"], ["IT1", 782, 639, 1, "short,interpolated"], ["DE3", 633, 708, 1, "interpolated"], ["ES1", 859, 690, 1, "short"], ["GB1", 968, 661, 1, "short"], ["GB6", 1067, 659, 1, "short"], ["GB3", 1041, 775, 1, "short,interpolated"], ["DE5", 782, 902, 1, "interpolated"], ["GB5", 1042, 959, 1, "unclassified"], ["FR3", 1149, 524, 2, "interpolated"], ["FR6", 1333, 419, 2, "unclassified"], ["FR5", 1364, 532, 2, "interpolated"], ["FR4", 1198, 653, 2, "interpolated"], ["GB4", 1326, 709, 2, "unclassified"], ["AT3", 1576, 665, 2, "unclassified"]];
+const nodes=rows.map(([id,x,y,v,t])=>({id,x,y,v,types:t.split(',')}));const byId=Object.fromEntries(nodes.map(n=>[n.id,n]));
+const edges=[];function add(a,b,style='solid',color='#a7b5ad',both=false){edges.push({a,b,style,color,both})}add('AT1','AT2');add('FR1','AT1','dotted','#a7b5ad',true);['PL1','BE1','DE2','DE1','FR2','IT1','ES1'].forEach(b=>add('FR1',b));['FR3','GB1','GB6','GB3'].forEach(b=>add('FR1',b,'dotted'));add('DE1','DE4');add('IT1','DE3');add('IT1','DE5','dotted');add('GB3','GB5');['FR6','FR5','FR4'].forEach(b=>add('FR3',b));add('FR5','GB4','dotted');add('FR5','AT3','dotted');add('FR4','GB4','dotted');
+let selected='FR1',hover=null,zoom=1,pan={x:0,y:0};const enabledV=new Set(versions.map((_,i)=>i+1)),enabledT=new Set(Object.keys(types));const $=s=>document.querySelector(s),ns='http://www.w3.org/2000/svg';function el(tag,attrs,parent){let e=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));parent.append(e);return e}
+$('#versions').innerHTML=versions.map((c,i)=>`<label class="check"><input type="checkbox" checked data-v="${i+1}"><span class="dot" style="background:${c}"></span>Version ${i+1}<span class="count">${nodes.filter(n=>n.v===i+1).length}</span></label>`).join('');$('#types').innerHTML=Object.entries(types).map(([k,[label,c]])=>`<label class="check"><input type="checkbox" checked data-t="${k}"><span class="dot" style="border:2px solid ${c};background:transparent;width:11px;height:11px"></span>${label}</label>`).join('');
+const graph=$('#graph');edges.forEach(e=>{let a=byId[e.a],b=byId[e.b],d=Math.hypot(b.x-a.x,b.y-a.y),ux=(b.x-a.x)/d,uy=(b.y-a.y)/d;e.el=el('path',{d:`M${a.x+ux*43} ${a.y+uy*43}L${b.x-ux*46} ${b.y-uy*46}`,class:'edge',stroke:e.color,'stroke-dasharray':e.style==='dotted'?'3 4':'','marker-end':'url(#arrow)',...(e.both?{'marker-start':'url(#arrow)'}:{})},graph)});nodes.forEach(n=>{n.el=el('g',{class:'node',transform:`translate(${n.x} ${n.y})`,tabindex:0,role:'button','aria-label':`${n.id}, graph version ${n.v}`},graph);n.types.slice().reverse().forEach((t,i)=>el('circle',{r:34+(n.types.length-1-i)*6,stroke:types[t][1]},n.el));let t=el('text',{'text-anchor':'middle',dy:6},n.el);t.textContent=n.id;t.style.fill=versions[n.v-1];n.el.addEventListener('mouseenter',ev=>{hover=n.id;$('#tooltip').style.display='block';$('#tooltip').textContent=`${n.id} · Version ${n.v} · ${n.types.map(t=>types[t][0]).join(' / ')}`;positionTip(ev);render()});n.el.addEventListener('mousemove',positionTip);n.el.addEventListener('mouseleave',()=>{hover=null;$('#tooltip').style.display='none';render()});n.el.addEventListener('click',()=>select(n.id));n.el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(n.id)}})});
+function positionTip(e){$('#tooltip').style.left=Math.min(e.clientX+15,innerWidth-310)+'px';$('#tooltip').style.top=Math.max(5,e.clientY-45)+'px'}function neighbors(id){return new Set([id,...edges.filter(e=>e.a===id||e.b===id).flatMap(e=>[e.a,e.b])])}function select(id){selected=id;details();render()}function details(){const n=byId[selected],links=edges.filter(e=>e.a===selected||e.b===selected);$('#details').innerHTML=`<div><div class="bigid" style="color:${versions[n.v-1]}">${n.id}</div><span class="pill">GRAPH VERSION ${n.v}</span><p class="detail">${n.types.map(t=>types[t][0]).join(' · ')}</p></div><div><h3>Connected manuscripts · ${links.length}</h3>${links.map(e=>{let other=e.a===selected?e.b:e.a;return `<button class="relation" data-id="${other}"><span>${other}</span><span>${e.both?'↔':e.a===selected?'→':'←'} ${e.style==='dotted'?'dotted':'solid'}</span></button>`}).join('')||'<p class="detail">No relationships shown in the source.</p>'}</div>`;$('#details').querySelectorAll('button').forEach(b=>b.onclick=()=>select(b.dataset.id))}
+function render(){const q=$('#search').value.trim().toLowerCase(),focus=$('#neighbors').checked?neighbors(selected):null,lit=hover?neighbors(hover):null;let visible=new Set(nodes.filter(n=>enabledV.has(n.v)&&n.types.some(t=>enabledT.has(t))&&(!q||n.id.toLowerCase().includes(q))&&(!focus||focus.has(n.id))).map(n=>n.id));nodes.forEach(n=>{n.el.classList.toggle('hidden',!visible.has(n.id));n.el.classList.toggle('fade',!!lit&&!lit.has(n.id));n.el.querySelectorAll('circle').forEach(c=>c.style.strokeWidth=n.id===selected?'5':'3')});let count=0;edges.forEach(e=>{let mode=$('#relationship').value,show=visible.has(e.a)&&visible.has(e.b)&&(mode==='all'||mode===e.style||mode==='colored'&&e.color!=='#a7b5ad');e.el.classList.toggle('hidden',!show);e.el.classList.toggle('fade',!!hover&&e.a!==hover&&e.b!==hover);if(show)count++});$('#status').textContent=`${visible.size} of ${nodes.length} manuscripts · ${count} relationships`;}
+document.querySelectorAll('[data-v],[data-t]').forEach(c=>c.onchange=()=>{let s=c.dataset.v?enabledV:enabledT,k=c.dataset.v?+c.dataset.v:c.dataset.t;c.checked?s.add(k):s.delete(k);render()});$('#search').oninput=render;$('#relationship').onchange=render;$('#neighbors').onchange=render;$('#reset').onclick=()=>{enabledV.clear();versions.map((_,i)=>i+1).forEach(v=>enabledV.add(v));Object.keys(types).forEach(t=>enabledT.add(t));document.querySelectorAll('[data-v],[data-t]').forEach(c=>c.checked=true);$('#search').value='';$('#relationship').value='all';$('#neighbors').checked=false;render()};function transform(){graph.setAttribute('transform',`translate(${1060+pan.x} ${580+pan.y}) scale(${zoom}) translate(-1060 -580)`)}function scale(f){zoom=Math.max(.5,Math.min(4,zoom*f));transform()}$('#plus').onclick=()=>scale(1.2);$('#minus').onclick=()=>scale(1/1.2);$('#fit').onclick=()=>{zoom=1;pan={x:0,y:0};transform()};$('#map').addEventListener('wheel',e=>{e.preventDefault();scale(e.deltaY<0?1.1:1/1.1)},{passive:false});let drag=null;$('#map').onpointerdown=e=>{if(e.target.closest('.node'))return;drag={x:e.clientX,y:e.clientY,px:pan.x,py:pan.y};$('#map').setPointerCapture(e.pointerId)};$('#map').onpointermove=e=>{if(!drag)return;let r=$('#map').getBoundingClientRect();let ratio=Math.max(1160/r.width,900/r.height);pan={x:drag.px+(e.clientX-drag.x)*ratio,y:drag.py+(e.clientY-drag.y)*ratio};transform()};$('#map').onpointerup=$('#map').onpointercancel=()=>drag=null;details();render();
+
+</script><script>
+const treeRecords=[{"label": "Ad_2_AT3_13", "group": "AT3", "id": "leaf-0", "y": 57.7}, {"label": "S_2_AT3_13", "group": "AT3", "id": "leaf-1", "y": 64.4}, {"label": "Co_0_FR6_13", "group": "FR6", "id": "leaf-3", "y": 77.9}, {"label": "Ny2_0_FR6_13", "group": "NY2", "id": "leaf-4", "y": 84.6}, {"label": "Ny2_0_FR6_13", "group": "FR6", "id": "leaf-4", "y": 84.6}, {"label": "M18_1_DE4_15", "group": "DE4", "id": "leaf-5", "y": 91.4}, {"label": "R_2_FR3_13", "group": "FR3", "id": "leaf-6", "y": 98.1}, {"label": "Ny_2_FR3_13", "group": "FR3", "id": "leaf-8", "y": 111.6}, {"label": "Bc_1_ES1_14", "group": "ES1", "id": "leaf-9", "y": 118.4}, {"label": "P4_2_FR3_13", "group": "FR3", "id": "leaf-10", "y": 125.1}, {"label": "F2_1_IT1_13", "group": "IT1", "id": "leaf-12", "y": 138.6}, {"label": "Lf_1_FR1_14", "group": "FR1", "id": "leaf-13", "y": 145.3}, {"label": "C5_1_FR1_13", "group": "FR1", "id": "leaf-14", "y": 152.1}, {"label": "O4_1_FR1_13", "group": "FR1", "id": "leaf-15", "y": 158.8}, {"label": "M1_1_Fr1_13", "group": "FR1", "id": "leaf-16", "y": 165.6}, {"label": "Br1_1_BE1_13", "group": "BR1", "id": "leaf-17", "y": 172.3}, {"label": "Br1_1_BE1_13", "group": "BE1", "id": "leaf-17", "y": 172.3}, {"label": "O7_1_GB1_13", "group": "GB1", "id": "leaf-20", "y": 192.5}, {"label": "Ax_1_FR2_13", "group": "FR2", "id": "leaf-23", "y": 212.8}, {"label": "Ln_1_FR2_13", "group": "FR2", "id": "leaf-25", "y": 226.2}, {"label": "Kr_0_CH2_14", "group": "CH2", "id": "leaf-28", "y": 246.5}, {"label": "L19_1_GB5_15", "group": "GB5", "id": "leaf-31", "y": 266.7}, {"label": "Aa_2_CH2_14", "group": "CH2", "id": "leaf-34", "y": 286.9}, {"label": "L2_3_GB2_13", "group": "GB2", "id": "leaf-35", "y": 293.7}, {"label": "NC_1_GB6_13", "group": "GB6", "id": "leaf-38", "y": 313.9}, {"label": "Y_2_FR4_14", "group": "FR4", "id": "leaf-39", "y": 320.6}, {"label": "P12_2_GB4_13", "group": "GB4", "id": "leaf-40", "y": 327.4}, {"label": "L6_2_GB4_13", "group": "GB4", "id": "leaf-41", "y": 334.1}, {"label": "Ny1_2_GB4_13", "group": "NY1", "id": "leaf-42", "y": 340.9}, {"label": "Ny1_2_GB4_13", "group": "GB4", "id": "leaf-42", "y": 340.9}, {"label": "Vi_2_FR4_13", "group": "FR4", "id": "leaf-43", "y": 347.6}, {"label": "Bo1_0_0_14", "group": "BO1", "id": "leaf-44", "y": 354.3}, {"label": "Ma1_0_0_15", "group": "MA1", "id": "leaf-45", "y": 361.1}, {"label": "W5_2_AT3_13", "group": "AT3", "id": "leaf-46", "y": 367.8}, {"label": "P15_1_DE5_15", "group": "DE5", "id": "leaf-49", "y": 388.1}, {"label": "A_1_DE5_14", "group": "DE5", "id": "leaf-50", "y": 394.8}, {"label": "Ph2_0_0_15", "group": "PH2", "id": "leaf-52", "y": 408.3}, {"label": "Mo_2_FR4_16", "group": "FR4", "id": "leaf-53", "y": 415.0}, {"label": "Ly1_2_FR4_13", "group": "LY1", "id": "leaf-54", "y": 421.8}, {"label": "Ly1_2_FR4_13", "group": "FR4", "id": "leaf-54", "y": 421.8}, {"label": "Z1_4_CH1_15", "group": "CH1", "id": "leaf-55", "y": 428.5}, {"label": "Da_4_CH1_15", "group": "CH1", "id": "leaf-56", "y": 435.3}, {"label": "Fm_4_CH1_15", "group": "CH1", "id": "leaf-57", "y": 442.0}, {"label": "Wf4_4_CH1_15", "group": "WF4", "id": "leaf-58", "y": 448.7}, {"label": "Wf4_4_CH1_15", "group": "CH1", "id": "leaf-58", "y": 448.7}, {"label": "Le1_6_NL1_15", "group": "LE1", "id": "leaf-60", "y": 462.2}, {"label": "Le1_6_NL1_15", "group": "NL1", "id": "leaf-60", "y": 462.2}, {"label": "We1_6_NL1_15", "group": "WE1", "id": "leaf-62", "y": 475.7}, {"label": "We1_6_NL1_15", "group": "NL1", "id": "leaf-62", "y": 475.7}, {"label": "V8_4_CH1_15", "group": "CH1", "id": "leaf-63", "y": 482.5}, {"label": "Sg_1_IT1_13", "group": "IT1", "id": "leaf-64", "y": 489.2}, {"label": "V_1_IT1_13", "group": "IT1", "id": "leaf-66", "y": 502.7}, {"label": "Ma_1_IT1_13", "group": "IT1", "id": "leaf-72", "y": 543.1}, {"label": "Wr1_1_IT1_14", "group": "WR1", "id": "leaf-73", "y": 549.9}, {"label": "Wr1_1_IT1_14", "group": "IT1", "id": "leaf-73", "y": 549.9}, {"label": "Nue_1_DE3_15", "group": "DE3", "id": "leaf-74", "y": 556.6}, {"label": "Vi1_1_IT1_13", "group": "VI1", "id": "leaf-75", "y": 563.4}, {"label": "Vi1_1_IT1_13", "group": "IT1", "id": "leaf-75", "y": 563.4}, {"label": "M6_1_DE3_14", "group": "DE3", "id": "leaf-86", "y": 637.5}, {"label": "W3_1_DE2_13", "group": "DE2", "id": "leaf-87", "y": 644.3}, {"label": "E1_1_DE2_14", "group": "DE2", "id": "leaf-88", "y": 651.0}, {"label": "Ny3_5_IT2_14", "group": "NY3", "id": "leaf-91", "y": 671.3}, {"label": "Ny3_5_IT2_14", "group": "IT2", "id": "leaf-91", "y": 671.3}, {"label": "Ba1_5_IT2_14", "group": "BA1", "id": "leaf-92", "y": 678.0}, {"label": "Ba1_5_IT2_14", "group": "IT2", "id": "leaf-92", "y": 678.0}, {"label": "Br2_1_BE1_14", "group": "BR2", "id": "leaf-93", "y": 684.7}, {"label": "Br2_1_BE1_14", "group": "BE1", "id": "leaf-93", "y": 684.7}, {"label": "Mv_1_GB3_13", "group": "GB3", "id": "leaf-95", "y": 698.2}, {"label": "C10_1_GB1_14", "group": "GB1", "id": "leaf-96", "y": 705.0}, {"label": "O3_1_GB1_13", "group": "GB1", "id": "leaf-97", "y": 711.7}, {"label": "B_1_GB1_12", "group": "GB1", "id": "leaf-98", "y": 718.4}, {"label": "Br4_0_0_14", "group": "BR4", "id": "leaf-100", "y": 731.9}, {"label": "C14_1_GB5_15", "group": "GB5", "id": "leaf-101", "y": 738.7}, {"label": "O_3_GB2_13", "group": "GB2", "id": "leaf-103", "y": 752.2}, {"label": "Wf2_1_GB5_14", "group": "WF2", "id": "leaf-104", "y": 758.9}, {"label": "Wf2_1_GB5_14", "group": "GB5", "id": "leaf-104", "y": 758.9}, {"label": "O2_1_GB3_13", "group": "GB3", "id": "leaf-105", "y": 765.6}, {"label": "Ph1_0_FR7_14", "group": "PH1", "id": "leaf-106", "y": 772.4}, {"label": "Ph1_0_FR7_14", "group": "FR7", "id": "leaf-106", "y": 772.4}, {"label": "L8_1_GB3_13", "group": "GB3", "id": "leaf-110", "y": 799.4}, {"label": "O10_1_GB3_14", "group": "GB3", "id": "leaf-111", "y": 806.1}, {"label": "C_1_GB6_12", "group": "GB6", "id": "leaf-112", "y": 812.8}, {"label": "H_1_GB3_13", "group": "GB3", "id": "leaf-113", "y": 819.6}, {"label": "Ed_1_GB3_13", "group": "GB3", "id": "leaf-114", "y": 826.3}, {"label": "Nh_1_GB3_13", "group": "GB3", "id": "leaf-116", "y": 839.8}, {"label": "Lz1_1_AT2_13", "group": "LZ1", "id": "leaf-118", "y": 853.3}, {"label": "Lz1_1_AT2_13", "group": "AT2", "id": "leaf-118", "y": 853.3}, {"label": "Ly_1_AT2_13", "group": "AT2", "id": "leaf-119", "y": 860.0}, {"label": "M5_1_AT2_14", "group": "AT2", "id": "leaf-120", "y": 866.8}, {"label": "W7_1_AT2_14", "group": "AT2", "id": "leaf-122", "y": 880.3}, {"label": "Av_2_FR3_14", "group": "FR3", "id": "leaf-123", "y": 887.0}, {"label": "P2_2_FR3_13", "group": "FR3", "id": "leaf-124", "y": 893.8}, {"label": "N_2_FR3_13", "group": "FR3", "id": "leaf-125", "y": 900.5}, {"label": "F1_2_FR3_14", "group": "FR3", "id": "leaf-127", "y": 914.0}, {"label": "M17_2_FR3_15", "group": "FR3", "id": "leaf-128", "y": 920.7}, {"label": "P8_2_FR3_13", "group": "FR3", "id": "leaf-129", "y": 927.5}, {"label": "St1_0_DE11_15", "group": "ST1", "id": "leaf-130", "y": 934.2}, {"label": "St1_0_DE11_15", "group": "DE11", "id": "leaf-130", "y": 934.2}, {"label": "V7_2_FR5_15", "group": "FR5", "id": "leaf-136", "y": 974.7}, {"label": "M2_2_AT3_13", "group": "AT3", "id": "leaf-137", "y": 981.4}, {"label": "Cm_2_FR5_13", "group": "FR5", "id": "leaf-138", "y": 988.2}, {"label": "Fb_1_DE1_13", "group": "DE1", "id": "leaf-140", "y": 1001.6}, {"label": "K_1_FR1_13", "group": "FR1", "id": "leaf-141", "y": 1008.4}, {"label": "Br_1_FR1_13", "group": "FR1", "id": "leaf-142", "y": 1015.1}, {"label": "C2_1_FR1_13", "group": "FR1", "id": "leaf-143", "y": 1021.9}, {"label": "P10_1_FR1_13", "group": "FR1", "id": "leaf-144", "y": 1028.6}, {"label": "E_1_FR1_13", "group": "FR1", "id": "leaf-145", "y": 1035.4}, {"label": "V6_0_FR8_14", "group": "FR8", "id": "leaf-146", "y": 1042.1}, {"label": "Ca_1_BE1_12", "group": "BE1", "id": "leaf-147", "y": 1048.8}, {"label": "P1_1_FR1_13", "group": "FR1", "id": "leaf-148", "y": 1055.6}, {"label": "Ch1_1_FR1_14", "group": "CH1", "id": "leaf-149", "y": 1062.3}, {"label": "Ch1_1_FR1_14", "group": "FR1", "id": "leaf-149", "y": 1062.3}, {"label": "N1_1_FR1_13", "group": "FR1", "id": "leaf-152", "y": 1082.6}, {"label": "W_1_AT1_12", "group": "AT1", "id": "leaf-153", "y": 1089.3}, {"label": "Nh2_0_0_14", "group": "NH2", "id": "leaf-155", "y": 1102.8}, {"label": "Ln1_0_0_13", "group": "LN1", "id": "leaf-160", "y": 1136.5}, {"label": "V3_0_FR7_13", "group": "FR7", "id": "leaf-165", "y": 1170.2}, {"label": "W1_1_AT2_13", "group": "AT2", "id": "leaf-166", "y": 1176.9}, {"label": "P13_0_FR7_14", "group": "FR7", "id": "leaf-167", "y": 1183.7}, {"label": "Koe_1_BE1_12", "group": "BE1", "id": "leaf-168", "y": 1190.4}, {"label": "V2_1_FR1_12", "group": "FR1", "id": "leaf-170", "y": 1203.9}, {"label": "M3_1_DE1_13", "group": "DE1", "id": "leaf-171", "y": 1210.7}, {"label": "Wf1_0_0_13", "group": "WF1", "id": "leaf-172", "y": 1217.4}, {"label": "Lz_1_AT1_13", "group": "AT1", "id": "leaf-173", "y": 1224.1}, {"label": "M_1_Fr1_13", "group": "FR1", "id": "leaf-174", "y": 1230.9}, {"label": "G_1_DE1_14", "group": "DE1", "id": "leaf-175", "y": 1237.6}];
+</script><script>
+// Match complete siglum components, case-insensitively (FR1 includes Fr1, not FR10).
+const treeSvg=document.querySelector('#phylogeny'),treeScroll=document.querySelector('#tree-scroll');
+const leafEls=[...treeSvg.querySelectorAll('.tree-leaf')];let treeScale=1,pinnedGroup=null,activeTreeGroup=undefined;
+const bands=document.createElementNS(ns,'g');bands.setAttribute('id','highlight-bands');treeSvg.insertBefore(bands,treeSvg.querySelector('g'));
+const sourceTips=[...treeSvg.querySelectorAll('line')];
+function highlightTree(group){
+ if(group===activeTreeGroup)return;
+ activeTreeGroup=group;const matches=group?treeRecords.filter(r=>r.group===group.toUpperCase()):[],ids=new Set(matches.map(r=>r.id));
+ treeSvg.classList.toggle('tree-has-selection',!!group);
+ bands.replaceChildren();leafEls.forEach(t=>{t.classList.toggle('leaf-match',ids.has(t.id));t.classList.toggle('leaf-muted',!!group&&!ids.has(t.id));t.classList.remove('located')});
+ sourceTips.forEach(l=>l.classList.remove('tip-match'));
+ matches.forEach(r=>{
+ el('rect',{x:827,y:r.y-5.5,width:82,height:7,rx:1,class:'label-backing'},bands);
+ el('circle',{cx:815,cy:r.y-3,r:3,class:'match-beacon'},bands);
+ el('line',{x1:909,x2:909,y1:r.y-5.5,y2:r.y+1.5,class:'match-rail'},bands);
+ el('rect',{x:10,y:r.y-5.5,width:899,height:7,class:'leaf-band'},bands);const line=sourceTips.find(l=>Math.abs(Number(l.getAttribute('y1'))-(r.y-4))<.3&&l.getAttribute('x2')==='818');if(line)line.classList.add('tip-match')});
+ document.querySelector('#tree-status').textContent=group?`${group} · ${matches.length} matching manuscript${matches.length===1?'':'s'} of ${leafEls.length}`:'Hover over a group to highlight its manuscripts';
+ document.querySelector('#match-title').textContent=group?`${group} — ${matches.length} matching sigla`:'Matching sigla';
+ const results=document.querySelector('#tree-matches');results.replaceChildren();
+ if(!group||!matches.length){let p=document.createElement('span');p.className='detail';p.textContent=group?'No manuscript sigla contain this group ID in the supplied tree.':'Hover over the tradition map, or select a group to keep its manuscripts highlighted.';results.append(p)}
+ matches.forEach(r=>{let b=document.createElement('button');b.className='siglum';b.textContent=r.label;b.onclick=()=>locateLeaf(r);results.append(b)});
+}
+function resizeTree(){treeSvg.style.width=treeScale*100+'%'}function locateLeaf(r){treeScale=Math.max(treeScale,2.4);resizeTree();requestAnimationFrame(()=>{let target=document.getElementById(r.id);target.classList.add('located');let rect=target.getBoundingClientRect(),viewport=treeScroll.getBoundingClientRect();treeScroll.scrollTo({left:treeScroll.scrollLeft+rect.x-viewport.x-viewport.width*.5,top:treeScroll.scrollTop+rect.y-viewport.y-viewport.height*.5,behavior:'smooth'})})}
+nodes.forEach(n=>{n.el.addEventListener('mouseenter',()=>highlightTree(n.id));n.el.addEventListener('mouseleave',()=>highlightTree(pinnedGroup));n.el.addEventListener('focus',()=>highlightTree(n.id));n.el.addEventListener('blur',()=>highlightTree(pinnedGroup));n.el.addEventListener('click',()=>{pinnedGroup=n.id;highlightTree(n.id)});n.el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){pinnedGroup=n.id;highlightTree(n.id)}})});
+document.querySelector('#details').addEventListener('click',e=>{let b=e.target.closest('[data-id]');if(b){pinnedGroup=b.dataset.id;highlightTree(pinnedGroup)}});
+document.querySelector('#clear-tree').onclick=()=>{pinnedGroup=null;highlightTree(null)};
+document.querySelector('#tree-plus').onclick=()=>{treeScale=Math.min(5,treeScale*1.4);resizeTree()};document.querySelector('#tree-minus').onclick=()=>{treeScale=Math.max(1,treeScale/1.4);resizeTree()};document.querySelector('#tree-fit').onclick=()=>{treeScale=1;resizeTree();treeScroll.scrollTo(0,0)};
+highlightTree(null);
+
+</script></html>
